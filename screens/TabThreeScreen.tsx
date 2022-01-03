@@ -7,7 +7,7 @@ import CounterText from "./CounterText"
 import PeopleIcon from "../components/PeopleIcon";
 import IconsFlex from "../components/IconsFlex";
 import {MessageFunc} from "./ChatScreen";
-import {LoadMessages} from "../components/ChatFunctions";
+
 
 interface Props{
   color: string;

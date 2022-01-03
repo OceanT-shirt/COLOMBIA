@@ -2,13 +2,12 @@ import React, {useEffect, useState} from "react";
 import {View, StyleSheet} from "react-native";
 import {Input, Button} from "react-native-elements";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-
+import {auth} from "../firebase"
 
 const LoginScreen = ({ navigation }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     useEffect(() => {
-        const auth = getAuth();
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 navigation.replace('TabOne');
