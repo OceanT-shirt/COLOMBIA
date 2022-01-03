@@ -1,21 +1,9 @@
 import React from "react";
 import {StyleSheet, Text, View} from "react-native";
 import {Avatar, Button} from "react-native-elements";
+import {Members} from "./members";
 
-// type Props = {
-//     id: number,
-//     pic: HTMLImageElement,
-//     name: string,
-//     desc: string,
-// }
-type Props = {
-    id: any,
-    pic: any,
-    name: any,
-    desc: any,
-}
-
-const ProfileCard = (props: Props) => {
+const ProfileCard = (props: Members) => {
     return (
         <View style={styles.card}>
             <View style={styles.avatar}>

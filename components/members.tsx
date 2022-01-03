@@ -1,4 +1,4 @@
-type Members = {
+export interface Members {
     id: number;
     pic: HTMLImageElement;
     name: string;

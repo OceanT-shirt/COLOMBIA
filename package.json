@@ -32,6 +32,7 @@
     "react-dom": "17.0.1",
     "react-native": "0.64.3",
     "react-native-elements": "github:react-native-elements/react-native-elements#dist",
+    "react-native-gifted-chat": "^0.16.3",
     "react-native-safe-area-context": "^3.3.2",
     "react-native-screens": "~3.10.1",
     "react-native-swiper": "^1.6.0",

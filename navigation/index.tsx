@@ -17,6 +17,7 @@ import ProfileScreen from "../screens/ProfileScreen";
 import NotFoundScreen from '../screens/NotFoundScreen';
 import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
+import TabThreeScreen from "../screens/TabThreeScreen";
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
 
@@ -89,8 +90,16 @@ function BottomTabNavigator() {
                 name="TabTwo"
                 component={TabTwoScreen}
                 options={{
-                    title: 'Random',
+                    title: 'Shuffle',
                     tabBarIcon: ({ color }) => <TabBarIcon name="refresh" color={color} />,
+                }}
+            />
+            <BottomTab.Screen
+                name="TabThree"
+                component={TabThreeScreen}
+                options={{
+                    title: 'Trending',
+                    tabBarIcon: ({ color }) => <TabBarIcon name="fire" color={color} />,
                 }}
             />
         </BottomTab.Navigator>

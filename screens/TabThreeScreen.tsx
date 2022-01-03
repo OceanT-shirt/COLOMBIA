@@ -8,6 +8,7 @@ import PeopleIcon from "../components/PeopleIcon";
 import IconsFlex from "../components/IconsFlex";
 import {MessageFunc} from "./ChatScreen";
 
+
 interface Props{
   color: string;
 }
@@ -22,7 +23,9 @@ function App (props: Props) {
   };
   return(
     <View style={styles.container}>
-      <IconsFlex />
+      <View style={{flex: 1, width: 400}}>
+        <MessageFunc />
+      </View>
     </View>
 
   );
@@ -30,20 +33,19 @@ function App (props: Props) {
 
 
 
-export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'>, props: Props) {
+export default function TabThreeScreen({ navigation }: RootTabScreenProps<'TabThree'>, props: Props) {
   return (
       <App color={'#2cb'}></App>
   );
 
 };
 
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'transparent',
+    backgroundColor: '#444',
   },
   title: {
     fontSize: 20,
