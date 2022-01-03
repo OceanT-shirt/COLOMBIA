@@ -66,24 +66,18 @@ export function MessageFunc() {
     }, [])
 
     //メッセージ更新時にドキュメントを更新
-    // useLayoutEffect(() => {
-    //     const collectionRef = collection(db, 'users');
-    //     const q = query(collectionRef, orderBy('createdAt', 'desc'));
-    //     return onSnapshot(doc(db, 'users'), (snapshot) => {
-    //         const snap_data = snapshot.data()
-    //         console.log(snap_data)
-    //         if (!snap_data) {
-    //         } else {
-    //             //TODO
-    //             setMessages(snap_data.map((doc: any) => ({
-    //                 _id: doc.id,
-    //                 createdAt: doc.createdAt.toDate(),
-    //                 text: doc.text,
-    //                 user: doc.user,
-    //             })))
-    //         }
-    //     });
-    // }, []);
+    useLayoutEffect(() => {
+        const collectionRef = collection(db, 'chats');
+        const q = query(collectionRef, orderBy('createdAt', 'desc'));
+        return onSnapshot(q, (snapshot) => {
+                setMessages(snapshot.docs.map((doc: any) => ({
+                    _id: doc.data().id,
+                    createdAt: doc.data().createdAt.toDate(),
+                    text: doc.data().text,
+                    user: doc.data().user,
+                })))
+        });
+    }, []);
     //送信時にメッセージをトークルームに追加
 
 
