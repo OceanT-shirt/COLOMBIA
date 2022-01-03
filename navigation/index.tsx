@@ -14,6 +14,9 @@ import { ColorSchemeName, Pressable } from 'react-native';
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import ProfileScreen from "../screens/ProfileScreen";
+import LoginScreen from "../screens/LoginScreen";
+import RegisterScreen from "../screens/RegisterScreen";
+import editScreen from "../screens/editScreen";
 import NotFoundScreen from '../screens/NotFoundScreen';
 import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
@@ -22,6 +25,7 @@ import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../typ
 import LinkingConfiguration from './LinkingConfiguration';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
+
     return (
         <NavigationContainer
             linking={LinkingConfiguration}
@@ -40,8 +44,11 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 function RootNavigator() {
     return (
         <Stack.Navigator>
+            <Stack.Screen name="Login" component={LoginScreen} />
             <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
             <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
+            <Stack.Screen name="editScreen" component={editScreen} />
+            <Stack.Screen name="Register" component={RegisterScreen} />
             <Stack.Group screenOptions={{ presentation: 'modal' }}>
                 <Stack.Screen name="Profile" component={ProfileScreen} />
             </Stack.Group>
@@ -57,7 +64,6 @@ const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
 function BottomTabNavigator() {
     const colorScheme = useColorScheme();
-
     return (
         <BottomTab.Navigator
             initialRouteName="TabOne"
