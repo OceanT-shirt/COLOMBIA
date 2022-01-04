@@ -1,9 +1,14 @@
-import {StyleSheet} from "react-native";
+import {StyleSheet, TouchableOpacity} from "react-native";
 import {View} from "../Themed";
 import {Avatar, ListItem, colors, Button} from "react-native-elements";
 import React from "react";
 import {Messages} from "../messages";
 
+interface GroupTalkDetails {
+    roomName: string;
+    key: number;
+    roomLink?: any;
+}
 
 export default function ChatButton (user: Partial<Messages>) {
     return (
@@ -17,6 +22,26 @@ export default function ChatButton (user: Partial<Messages>) {
             </View>
             {/*文字数が増えてもレイアウトがずれないようにする*/}
             <ListItem.Chevron />
+        </View>
+    )
+}
+
+export function GroupTalkRoom (props: GroupTalkDetails) {
+    const roomName = props.roomName;
+    const roomLink = props.roomLink;
+    return (
+        <View style={styles.button} >
+            {/*<TouchableOpacity onPress={roomLink}>*/}
+                {/*<View style={styles.avatar}>*/}
+                {/*    <Avatar rounded source={user.pic} size={40}/>*/}
+                {/*</View>*/}
+                <View style={styles.messageContent}>
+                    <ListItem.Title style={styles.title}>{roomName}</ListItem.Title>
+                    {/*<ListItem.Subtitle style={styles.subtitle}>{user.message}</ListItem.Subtitle>*/}
+                </View>
+                {/*文字数が増えてもレイアウトがずれないようにする*/}
+                <ListItem.Chevron />
+            {/*</TouchableOpacity>*/}
         </View>
     )
 }
