@@ -1,13 +1,30 @@
-import {Image, StyleSheet} from "react-native";
+import { signOut } from "firebase/auth";
+import {Button, Image, StyleSheet} from "react-native";
 import {Text, View} from "../components/Themed";
+import {auth} from "../firebase";
+import {RootTabScreenProps} from "../types";
 
-export default function ProfileScreen() {
+
+export default function ProfileScreen({navigation}: RootTabScreenProps<'Profile'>) {
+    const email = auth?.currentUser?.email;
+    const displayName = auth?.currentUser?.displayName;
+    const photoURL = auth?.currentUser?.photoURL;
+    const uid = auth?.currentUser?.uid;
+    const signOutFunc = () => {
+        signOut(auth).then(() => {
+        }).catch((error) => {
+            alert(error)
+        })};
+
     return (
         <View style={styles.container}>
-            <Image style={styles.profilePic} source={require('../assets/images/matching-app-icon.png')} />
-            <Text style={styles.title}>Your Name</Text>
+            <Image style={styles.profilePic} source={{uri: photoURL}} />
+            {/*TODO null時の処理*/}
+            <Text style={styles.title}>{displayName}</Text>
             <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-            <Text style={styles.getStartedText} >プロフィール文がここに入ります</Text>
+            {/*<Text style={styles.getStartedText} >{profile}</Text>*/}
+            <Button title="編集する" onPress={() => navigation.navigate('EditScreen')}/>
+            <Button title="ログアウト" onPress={signOutFunc}/>
         </View>
     );
 }

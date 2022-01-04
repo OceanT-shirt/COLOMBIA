@@ -20,6 +20,12 @@ import TabTwoScreen from '../screens/TabTwoScreen';
 import TabThreeScreen from "../screens/TabThreeScreen";
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
+import {auth} from "../firebase";
+import {onAuthStateChanged} from "firebase/auth";
+import {useState} from "react";
+import SignInScreen from "../screens/SignInScreen";
+import SignUpScreen from "../screens/SignUpScreen";
+import EditScreen from "../screens/EditScreen";
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
     return (
@@ -38,15 +44,35 @@ export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeNa
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
-    return (
-        <Stack.Navigator>
-            <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
-            <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
-            <Stack.Group screenOptions={{ presentation: 'modal' }}>
-                <Stack.Screen name="Profile" component={ProfileScreen} />
-            </Stack.Group>
-        </Stack.Navigator>
-    );
+    const [isLogin, setIsLogin] = useState(false)
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            setIsLogin(() => true)
+        } else {
+            setIsLogin(() => false)
+        }
+    })
+
+    if (!isLogin) {
+        return (
+            <Stack.Navigator>
+                <Stack.Screen name="SignIn" component={SignInScreen} />
+                <Stack.Screen name="SignUp" component={SignUpScreen} />
+            </Stack.Navigator>
+        );
+    } else {
+        return(
+            // TODO モーダルの挙動を整える（現状勝手に消えてくれない）
+            <Stack.Navigator>
+                <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
+                <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
+                <Stack.Screen name="EditScreen" component={EditScreen} />
+                <Stack.Group screenOptions={{ presentation: 'modal' }}>
+                    <Stack.Screen name="Profile" component={ProfileScreen} />
+                </Stack.Group>
+            </Stack.Navigator>
+        );
+    }
 }
 
 /**

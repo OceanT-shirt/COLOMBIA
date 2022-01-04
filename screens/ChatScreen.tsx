@@ -1,7 +1,8 @@
 import React, { useCallback, useState, useEffect, useLayoutEffect } from 'react'
 import {GiftedChat, QuickReplies, User} from 'react-native-gifted-chat'
 import {db} from "../firebase";
-import {addDoc, collection, doc, onSnapshot, orderBy, query, getFirestore} from 'firebase/firestore';
+import {addDoc, collection, onSnapshot, orderBy, query} from 'firebase/firestore';
+import {Bubble} from "react-native-gifted-chat";
 
 // declare the type of each message
 interface IMessage {
@@ -78,7 +79,7 @@ export function MessageFunc() {
                 })))
         });
     }, []);
-    //送信時にメッセージをトークルームに追加
+
 
 
     return (
@@ -86,9 +87,9 @@ export function MessageFunc() {
             messages={messages}
             onSend={messages => onSend(messages)}
             user={{
-                _id: 2,
+                _id: 4,
                 name: 'React Native',
-                avatar: 'https://placeimg.com/140/140/any',
+                avatar: 'https://placeimg.com/140/140/arch',
             }}
         />
 

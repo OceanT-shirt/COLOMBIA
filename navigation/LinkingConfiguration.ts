@@ -33,7 +33,10 @@ const linking: LinkingOptions<RootStackParamList> = {
         },
       },
       Profile: 'profile',
+      EditScreen: 'editscreen',
       NotFound: '*',
+      SignIn: 'signin',
+      SignUp: 'signup',
     },
   },
 };
