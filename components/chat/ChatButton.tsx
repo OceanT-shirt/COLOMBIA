@@ -30,17 +30,19 @@ export function GroupTalkRoom (props: GroupTalkDetails) {
     const roomName = props.roomName;
     const roomLink = props.roomLink;
     return (
-        <View style={styles.button} >
+        <View style={styles.talkButton} >
             {/*<TouchableOpacity onPress={roomLink}>*/}
-                {/*<View style={styles.avatar}>*/}
-                {/*    <Avatar rounded source={user.pic} size={40}/>*/}
-                {/*</View>*/}
+                <View style={styles.avatar}>
+                    <Avatar rounded source={require("../../assets/images/matching-app-icon.png")} size={40}/>
+                </View>
                 <View style={styles.messageContent}>
                     <ListItem.Title style={styles.title}>{roomName}</ListItem.Title>
-                    {/*<ListItem.Subtitle style={styles.subtitle}>{user.message}</ListItem.Subtitle>*/}
+                    <ListItem.Subtitle style={styles.subtitle}>{"新規メッセージがあります"}</ListItem.Subtitle>
                 </View>
                 {/*文字数が増えてもレイアウトがずれないようにする*/}
-                <ListItem.Chevron />
+                <View style={styles.left}>
+                    <ListItem.Chevron />
+                </View>
             {/*</TouchableOpacity>*/}
         </View>
     )
@@ -57,6 +59,14 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         padding: 10,
     },
+    talkButton: {
+        flex: 1,
+        height: 100,
+        justifyContent: "center",
+        backgroundColor: '#fff',
+        borderRadius: 10,
+        flexDirection: 'row',
+    },
     avatar: {
         justifyContent: "center",
         backgroundColor: 'transparent',
@@ -69,10 +79,20 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     title: {
-        fontWeight: 'bold',
-        color: '#fff',
+        color: '#000',
+        fontFamily: 'Avenir',
+        fontWeight: '900',
+        fontSize: 24,
+        width: '70%',
+        height: 40,
     },
     subtitle: {
-        color: '#fff',
+        color: '#000',
+    },
+    left: {
+        backgroundColor: '#00B398',
+        flexDirection: 'row',
+        borderTopEndRadius: 10,
+        borderBottomEndRadius: 10,
     },
 });
