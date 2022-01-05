@@ -30,23 +30,25 @@ const SignInScreen = ({ navigation }: RootStackScreenProps<'SignIn'>) => {
 
     return (
         <View style={styles.container}>
-            <Input
-                placeholder='Enter your email'
-                label='email'
-                leftIcon={{ type: 'material', name: 'email' }}
-                value={email}
-                onChangeText={text => setEmail(text)}
-            />
-            <Input
-                placeholder='Enter your password'
-                label='Password'
-                leftIcon={{ type: 'material', name: 'lock' }}
-                value={password}
-                onChangeText={text => setPassword(text)}
-                secureTextEntry
-            />
-            <Button title="sign in" style={styles.button} onPress={signIn} />
-            <Button title="register" style={styles.button} onPress={() => navigation.navigate('SignUp')} />
+            <View style={styles.inputContainer}>
+                <Input
+                    placeholder='Enter your email'
+                    label='email'
+                    leftIcon={{ type: 'material', name: 'email' }}
+                    value={email}
+                    onChangeText={text => setEmail(text)}
+                />
+                <Input
+                    placeholder='Enter your password'
+                    label='Password'
+                    leftIcon={{ type: 'material', name: 'lock' }}
+                    value={password}
+                    onChangeText={text => setPassword(text)}
+                    secureTextEntry
+                />
+            </View>
+            <Button title="sign in" buttonStyle={styles.signInButton} containerStyle={styles.buttonContainer} onPress={signIn} titleStyle={styles.buttonTitle} />
+            <Button title="register" buttonStyle={styles.registerButton} containerStyle={styles.buttonContainer} onPress={() => navigation.navigate('SignUp')} titleStyle={styles.buttonTitle} />
         </View>
     )
 }
@@ -54,11 +56,40 @@ const SignInScreen = ({ navigation }: RootStackScreenProps<'SignIn'>) => {
 export default SignInScreen
 
 export const styles = StyleSheet.create ({
-    button: {
-        width: 200,
-        margin: 20,
-    },
     container: {
         flex: 1,
+        backgroundColor: '#000',
+        alignItems: "center",
+        justifyContent: "center",
     },
+    signInButton: {
+        width: '75%',
+        backgroundColor: '#8D20E0',
+        height: 60,
+        borderRadius: 15,
+        fontSize: 35,
+    },
+    registerButton: {
+        width: '75%',
+        height: 60,
+        backgroundColor: '#00B393',
+        borderRadius: 15,
+        fontSize: 35,
+    },
+    inputContainer: {
+        width: '80%',
+        backgroundColor: '#fff',
+        padding: 30,
+    },
+    buttonContainer: {
+        width: '100%',
+        paddingTop: 30,
+        alignItems: "center",
+    },
+    buttonTitle: {
+        flex: 1,
+        fontSize: 30,
+        fontFamily: 'Avenir',
+        fontWeight: '400',
+    }
 })

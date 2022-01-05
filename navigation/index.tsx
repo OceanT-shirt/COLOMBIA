@@ -27,6 +27,7 @@ import SignInScreen from "../screens/SignInScreen";
 import SignUpScreen from "../screens/SignUpScreen";
 import EditScreen from "../screens/EditScreen";
 
+
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
     return (
         <NavigationContainer
@@ -56,7 +57,7 @@ function RootNavigator() {
     if (!isLogin) {
         return (
             <Stack.Navigator>
-                <Stack.Screen name="SignIn" component={SignInScreen} />
+                <Stack.Screen name="SignIn" component={SignInScreen} options={{ headerShown: false }} />
                 <Stack.Screen name="SignUp" component={SignUpScreen} />
             </Stack.Navigator>
         );
@@ -89,6 +90,14 @@ function BottomTabNavigator() {
             initialRouteName="TabOne"
             screenOptions={{
                 tabBarActiveTintColor: Colors[colorScheme].tint,
+                headerStyle: {
+                    height: 120,
+                    },
+                headerTitleStyle: {
+                    fontSize: 40,
+                    fontFamily: 'Avenir',
+                    fontWeight: '900',
+                },
             }}>
             <BottomTab.Screen
                 name="TabOne"
@@ -96,6 +105,7 @@ function BottomTabNavigator() {
                 options={({ navigation }: RootTabScreenProps<'TabOne'>) => ({
                     title: 'Home',
                     tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
+                    //モーダルへのリンクボタンの設定
                     headerRight: () => (
                         <Pressable
                             onPress={() => navigation.navigate('Profile')}

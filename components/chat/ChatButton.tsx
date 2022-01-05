@@ -33,7 +33,7 @@ export function GroupTalkRoom (props: GroupTalkDetails) {
         <View style={styles.talkButton} >
             {/*<TouchableOpacity onPress={roomLink}>*/}
                 <View style={styles.avatar}>
-                    <Avatar rounded source={require("../../assets/images/matching-app-icon.png")} size={40}/>
+                    <Avatar rounded source={require("../../assets/images/matching-app-icon.png")} size={56}/>
                 </View>
                 <View style={styles.messageContent}>
                     <ListItem.Title style={styles.title}>{roomName}</ListItem.Title>

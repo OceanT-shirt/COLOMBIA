@@ -33,12 +33,6 @@ const CreateRoomButton = () => {
 const ChatRoomList = () => {
     const [roomNameList, setRoomNameList] = useState([])
     useLayoutEffect(() => {
-        // getDocs(collection(db, "chatRooms")).then(
-        //     (collectionSnap) => {
-        //         setRoomNameList(collectionSnap.docs.map(doc => doc.data().roomName))
-        //         console.log("通信処理を行いました");
-        //     }
-        // );
         const collectionRef = collection(db, "chatRooms");
         const q = query(collectionRef);
         return onSnapshot(q, (collectionSnap) => {

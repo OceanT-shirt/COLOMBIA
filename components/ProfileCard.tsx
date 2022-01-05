@@ -1,13 +1,20 @@
 import React from "react";
 import {StyleSheet, Text, View} from "react-native";
 import {Avatar, Button} from "react-native-elements";
-import {Members} from "./members";
+// import {Members} from "./members";
+
+interface Members {
+    id: number;
+    pic: HTMLImageElement;
+    name: string;
+    desc: string;
+}
 
 const ProfileCard = (props: Members) => {
     return (
         <View style={styles.card}>
             <View style={styles.avatar}>
-                <Avatar rounded size={128} source={props.pic} />
+                <Avatar rounded size={200} source={{uri: props.pic}} />
             </View>
             <Text style={styles.name}>
                 {props.name}
@@ -35,7 +42,8 @@ const styles = StyleSheet.create({
     },
     name: {
         fontSize: 36,
-        fontWeight: "bold",
+        fontFamily: 'Avenir',
+        fontWeight: '900',
         alignItems: 'center',
         color: 'white',
     },
