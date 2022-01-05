@@ -1,5 +1,6 @@
 import { signOut } from "firebase/auth";
-import {Button, Image, StyleSheet} from "react-native";
+import {Image, StyleSheet} from "react-native";
+import {Button} from "react-native-elements";
 import {Text, View} from "../components/Themed";
 import {auth} from "../firebase";
 import {RootTabScreenProps} from "../types";
@@ -23,8 +24,9 @@ export default function ProfileScreen({navigation}: RootTabScreenProps<'Profile'
             <Text style={styles.title}>{displayName}</Text>
             <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
             {/*<Text style={styles.getStartedText} >{profile}</Text>*/}
-            <Button title="編集する" onPress={() => navigation.navigate('EditScreen')}/>
-            <Button title="ログアウト" onPress={signOutFunc}/>
+
+            <Button title="Edit" onPress={() => navigation.navigate('EditScreen')} buttonStyle={styles.editButton} containerStyle={styles.buttonContainer} titleStyle={styles.buttonTitle} />
+            <Button title="Log out" onPress={signOutFunc} buttonStyle={styles.logOutButton} containerStyle={styles.buttonContainer} titleStyle={styles.buttonTitle} />
         </View>
     );
 }
@@ -34,6 +36,7 @@ const styles = StyleSheet.create ({
         width: 192,
         height: 192,
         borderRadius: 48,
+        margin: 24,
     },
     container: {
         flex: 1,
@@ -41,8 +44,9 @@ const styles = StyleSheet.create ({
         justifyContent: 'center',
     },
     title: {
-        fontSize: 30,
-        fontWeight: 'bold',
+        fontSize: 36,
+        fontFamily: 'Avenir',
+        fontWeight: '900',
     },
     separator: {
         marginVertical: 30,
@@ -53,6 +57,31 @@ const styles = StyleSheet.create ({
         fontSize: 17,
         lineHeight: 24,
         textAlign: 'center',
+    },
+    buttonContainer: {
+        width: '100%',
+        paddingTop: 30,
+        alignItems: "center",
+    },
+    buttonTitle: {
+        flex: 1,
+        fontSize: 30,
+        fontFamily: 'Avenir',
+        fontWeight: '400',
+    },
+    editButton: {
+        width: '75%',
+        backgroundColor: '#8D20E0',
+        height: 60,
+        borderRadius: 15,
+        fontSize: 35,
+    },
+    logOutButton: {
+        width: '75%',
+        backgroundColor: '#00B393',
+        height: 60,
+        borderRadius: 15,
+        fontSize: 35,
     },
 });
     

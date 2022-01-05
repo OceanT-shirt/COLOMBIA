@@ -24,7 +24,6 @@ const SignUpScreen = ({ navigation }: RootStackScreenProps<'SignUp'>) => {
                     // Update successful.
                 }).catch(function(error){
                     // An error happened.
-                    // navigation.replace("Root")
                     const errorCode = error.code;
                     const errorMessage = error.message;
                     alert(errorMessage)
@@ -34,37 +33,40 @@ const SignUpScreen = ({ navigation }: RootStackScreenProps<'SignUp'>) => {
     }
     return (
         <View style={styles.container}>
-            <Input
-                placeholder='Enter your nickname'
-                label='Nickname'
-                leftIcon={{ type: 'material', name: 'badge' }}
-                value={name}
-                onChangeText={text => setName(text)}
-            />
-            <Input
-                placeholder='Enter your email'
-                label='Email'
-                leftIcon={{ type: 'material', name: 'email' }}
-                value={email}
-                onChangeText={text => setEmail(text)}
-            />
+            <Button title="< Sign in" buttonStyle={styles.backButton} containerStyle={styles.buttonContainer} onPress={() => navigation.navigate('SignIn')} titleStyle={styles.buttonTitle} />
+            <View style={styles.inputContainer}>
+                <Input
+                    placeholder='Enter your nickname'
+                    label='Nickname'
+                    leftIcon={{ type: 'material', name: 'badge' }}
+                    value={name}
+                    onChangeText={text => setName(text)}
+                />
+                <Input
+                    placeholder='Enter your email'
+                    label='Email'
+                    leftIcon={{ type: 'material', name: 'email' }}
+                    value={email}
+                    onChangeText={text => setEmail(text)}
+                />
 
-            <Input
-                placeholder='Enter your password'
-                label='Password'
-                leftIcon={{ type: 'material', name: 'lock' }}
-                value={password}
-                onChangeText={text => setPassword(text)}
-                secureTextEntry
-            />
-            <Input
-                placeholder='Enter your icon URL'
-                label='Profile picture'
-                leftIcon={{ type: 'material', name: 'face' }}
-                value={imageURL}
-                onChangeText={text => setImageURL(text)}
-            />
-            <Button title="register" onPress= {register} style={styles.button} />
+                <Input
+                    placeholder='Enter your password'
+                    label='Password'
+                    leftIcon={{ type: 'material', name: 'lock' }}
+                    value={password}
+                    onChangeText={text => setPassword(text)}
+                    secureTextEntry
+                />
+                <Input
+                    placeholder='Enter your icon URL'
+                    label='Profile picture'
+                    leftIcon={{ type: 'material', name: 'face' }}
+                    value={imageURL}
+                    onChangeText={text => setImageURL(text)}
+                />
+            </View>
+            <Button title="Register >" onPress= {register} buttonStyle={styles.registerButton} containerStyle={styles.buttonContainer} titleStyle={styles.buttonTitle} />
         </View>
     )
 }

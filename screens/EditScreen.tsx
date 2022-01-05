@@ -4,6 +4,7 @@ import { Input, Button } from 'react-native-elements'
 import { db,auth } from "../firebase"
 import {updateProfile} from "firebase/auth";
 import {RootTabScreenProps} from "../types";
+import {styles} from "./SignInScreen";
 
 const EditScreen = ({navigation}: RootTabScreenProps<'EditScreen'>) => {
     const [email, setEmail] = useState(auth?.currentUser?.email);
@@ -26,20 +27,21 @@ const EditScreen = ({navigation}: RootTabScreenProps<'EditScreen'>) => {
     }
     return (
         <View style={styles.container}>
-            <Input
-                placeholder='Enter your name'
-                label='name'
-                leftIcon={{ type: 'material', name: 'face' }}
-                value={displayName}
-                onChangeText={text => setName(text)}
-            />
-            <Input
-                placeholder='Enter your Icon URL'
-                label='photoURL'
-                leftIcon={{ type: 'material', name: 'face' }}
-                value={photoURL}
-                onChangeText={text => setURL(text)}
-            />
+            <View style={styles.inputContainer}>
+                <Input
+                    placeholder='Enter your name'
+                    label='name'
+                    leftIcon={{ type: 'material', name: 'face' }}
+                    value={displayName}
+                    onChangeText={text => setName(text)}
+                />
+                <Input
+                    placeholder='Enter your Icon URL'
+                    label='photoURL'
+                    leftIcon={{ type: 'material', name: 'face' }}
+                    value={photoURL}
+                    onChangeText={text => setURL(text)}
+                />
             {/*<Input*/}
             {/*    placeholder='Enter your Profile'*/}
             {/*    label='profile'*/}
@@ -47,22 +49,11 @@ const EditScreen = ({navigation}: RootTabScreenProps<'EditScreen'>) => {
             {/*    value={profile}*/}
             {/*    onChangeText={text => setProfile(text)}*/}
             {/*/>*/}
-            <Button title="更新" onPress= {UpdateProfile} style={styles.button} />
+            </View>
+            <Button title="Update" onPress= {UpdateProfile} buttonStyle={styles.registerButton} containerStyle={styles.buttonContainer} titleStyle={styles.buttonTitle} />
         </View>)
 
 }
 
 
 export default EditScreen
-const styles = StyleSheet.create({
-    button: {
-        width: 100,
-        marginTop: 10
-    },
-    container: {
-        flex: 4,
-        alignItems: 'center',
-        padding: 30
-    }
-
-})

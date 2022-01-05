@@ -58,7 +58,7 @@ function RootNavigator() {
         return (
             <Stack.Navigator>
                 <Stack.Screen name="SignIn" component={SignInScreen} options={{ headerShown: false }} />
-                <Stack.Screen name="SignUp" component={SignUpScreen} />
+                <Stack.Screen name="SignUp" component={SignUpScreen} options={{ headerShown: false }} />
             </Stack.Navigator>
         );
     } else {
@@ -69,7 +69,7 @@ function RootNavigator() {
                 <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
                 <Stack.Screen name="EditScreen" component={EditScreen} />
                 <Stack.Group screenOptions={{ presentation: 'modal' }}>
-                    <Stack.Screen name="Profile" component={ProfileScreen} />
+                    <Stack.Screen name="Profile" component={ProfileScreen} options={{ headerShown: false }} />
                 </Stack.Group>
             </Stack.Navigator>
         );
