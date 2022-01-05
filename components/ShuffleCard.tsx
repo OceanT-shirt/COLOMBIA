@@ -24,7 +24,7 @@ export default function HomeScreen () {
             <Swiper style={styles.wrapper} showsButtons loop={true}>
                 {
                     profileList.map((info) => {
-                        return (<ProfileCard key="{data}" id={info.id} pic={info.photoURL} name={info.displayName} desc={info.profile} />)})
+                        return (<ProfileCard key={profileList.indexOf(info)} id={info.id} pic={info.photoURL} name={info.displayName} desc={info.profile} />)})
                 }
             </Swiper>
         </View>

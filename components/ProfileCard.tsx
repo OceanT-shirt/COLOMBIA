@@ -4,7 +4,7 @@ import {Avatar, Button} from "react-native-elements";
 // import {Members} from "./members";
 
 interface Members {
-    id: number;
+    id: number |　string;
     pic: HTMLImageElement;
     name: string;
     desc: string;
