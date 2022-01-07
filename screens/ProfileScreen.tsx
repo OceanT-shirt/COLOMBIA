@@ -19,6 +19,7 @@ export default function ProfileScreen({navigation}: RootTabScreenProps<'Profile'
 
     return (
         <View style={styles.container}>
+            <Button title="＜ Back to Home" onPress={() => navigation.navigate('Root')} buttonStyle={styles.logOutButton} containerStyle={styles.buttonContainer} titleStyle={styles.buttonTitle} />
             <Image style={styles.profilePic} source={{uri: photoURL}} />
             {/*TODO null時の処理*/}
             <Text style={styles.title}>{displayName}</Text>
