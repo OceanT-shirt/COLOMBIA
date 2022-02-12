@@ -1,9 +1,14 @@
-import {StyleSheet} from "react-native";
+import {StyleSheet, TouchableOpacity} from "react-native";
 import {View} from "../Themed";
 import {Avatar, ListItem, colors, Button} from "react-native-elements";
 import React from "react";
 import {Messages} from "../messages";
 
+interface GroupTalkDetails {
+    roomName: string;
+    key: number;
+    roomLink?: any;
+}
 
 export default function ChatButton (user: Partial<Messages>) {
     return (
@@ -21,6 +26,28 @@ export default function ChatButton (user: Partial<Messages>) {
     )
 }
 
+export function GroupTalkRoom (props: GroupTalkDetails) {
+    const roomName = props.roomName;
+    const roomLink = props.roomLink;
+    return (
+        <View style={styles.talkButton} >
+            {/*<TouchableOpacity onPress={roomLink}>*/}
+                <View style={styles.avatar}>
+                    <Avatar rounded source={require("../../assets/images/matching-app-icon.png")} size={56}/>
+                </View>
+                <View style={styles.messageContent}>
+                    <ListItem.Title style={styles.title}>{roomName}</ListItem.Title>
+                    <ListItem.Subtitle style={styles.subtitle}>{"新規メッセージがあります"}</ListItem.Subtitle>
+                </View>
+                {/*文字数が増えてもレイアウトがずれないようにする*/}
+                <View style={styles.left}>
+                    <ListItem.Chevron />
+                </View>
+            {/*</TouchableOpacity>*/}
+        </View>
+    )
+}
+
 const styles = StyleSheet.create({
     button: {
         flex: 1,
@@ -31,6 +58,14 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         flexDirection: 'row',
         padding: 10,
+    },
+    talkButton: {
+        flex: 1,
+        height: 100,
+        justifyContent: "center",
+        backgroundColor: '#fff',
+        borderRadius: 10,
+        flexDirection: 'row',
     },
     avatar: {
         justifyContent: "center",
@@ -44,10 +79,20 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     title: {
-        fontWeight: 'bold',
-        color: '#fff',
+        color: '#000',
+        fontFamily: 'Avenir',
+        fontWeight: '900',
+        fontSize: 24,
+        width: '70%',
+        height: 40,
     },
     subtitle: {
-        color: '#fff',
+        color: '#000',
+    },
+    left: {
+        backgroundColor: '#00B398',
+        flexDirection: 'row',
+        borderTopEndRadius: 10,
+        borderBottomEndRadius: 10,
     },
 });

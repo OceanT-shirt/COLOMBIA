@@ -7,6 +7,7 @@ import CounterText from "./CounterText"
 import PeopleIcon from "../components/PeopleIcon";
 import IconsFlex from "../components/IconsFlex";
 import {MessageFunc} from "./ChatScreen";
+import {ChatRoomList} from "../components/chat/ChatRoomList";
 
 interface Props{
   color: string;
@@ -22,7 +23,8 @@ function App (props: Props) {
   };
   return(
     <View style={styles.container}>
-      <IconsFlex />
+      {/*<IconsFlex />*/}
+      <ChatRoomList />
     </View>
 
   );

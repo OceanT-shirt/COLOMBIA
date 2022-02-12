@@ -1,13 +1,20 @@
 import React from "react";
 import {StyleSheet, Text, View} from "react-native";
 import {Avatar, Button} from "react-native-elements";
-import {Members} from "./members";
+// import {Members} from "./members";
+
+interface Members {
+    id: number |　string;
+    pic: HTMLImageElement;
+    name: string;
+    desc: string;
+}
 
 const ProfileCard = (props: Members) => {
     return (
         <View style={styles.card}>
             <View style={styles.avatar}>
-                <Avatar rounded size={128} source={props.pic} />
+                <Avatar rounded size={200} source={{uri: props.pic}} />
             </View>
             <Text style={styles.name}>
                 {props.name}
@@ -15,7 +22,7 @@ const ProfileCard = (props: Members) => {
             <Text style={styles.desc}>
                 {props.desc}
             </Text>
-            <Button title="Check Profile" />
+            <Button title="Check Profile" buttonStyle={styles.button} containerStyle={styles.buttonContainer} titleStyle={styles.buttonTitle} />
         </View>
     )
 }
@@ -27,28 +34,49 @@ const styles = StyleSheet.create({
         marginVertical: 80,
         padding: 30,
         borderRadius: 30,
-        borderWidth: 1,
-        borderColor: 'gray',
+        borderWidth: 3,
+        borderColor: '#8D20E0',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#333333',
+        backgroundColor: '#fff',
     },
     name: {
-        fontSize: 36,
-        fontWeight: "bold",
+        fontSize: 45,
+        fontFamily: 'Avenir',
+        fontWeight: '900',
         alignItems: 'center',
-        color: 'white',
+        color: '#000',
     },
     desc: {
-        fontSize: 16,
+        fontSize: 20,
         margin: 15,
         alignItems: 'center',
-        color: 'white',
+        color: '#000',
+        fontFamily: 'Avenir',
+        fontWeight: '400',
     },
     avatar: {
         padding: 30,
         alignItems: 'center',
-    }
+    },
+    buttonContainer: {
+        width: '100%',
+        paddingTop: 30,
+        alignItems: "center",
+    },
+    buttonTitle: {
+        flex: 1,
+        fontSize: 25,
+        fontFamily: 'Avenir',
+        fontWeight: '400',
+    },
+    button: {
+        width: '100%',
+        backgroundColor: '#8D20E0',
+        height: 60,
+        borderRadius: 15,
+        fontSize: 35,
+    },
 })
 
 export default ProfileCard

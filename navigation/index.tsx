@@ -20,6 +20,13 @@ import TabTwoScreen from '../screens/TabTwoScreen';
 import TabThreeScreen from "../screens/TabThreeScreen";
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
+import {auth} from "../firebase";
+import {onAuthStateChanged} from "firebase/auth";
+import {useState} from "react";
+import SignInScreen from "../screens/SignInScreen";
+import SignUpScreen from "../screens/SignUpScreen";
+import EditScreen from "../screens/EditScreen";
+
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
     return (
@@ -38,15 +45,35 @@ export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeNa
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
-    return (
-        <Stack.Navigator>
-            <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
-            <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
-            <Stack.Group screenOptions={{ presentation: 'modal' }}>
-                <Stack.Screen name="Profile" component={ProfileScreen} />
-            </Stack.Group>
-        </Stack.Navigator>
-    );
+    const [isLogin, setIsLogin] = useState(false)
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            setIsLogin(() => true)
+        } else {
+            setIsLogin(() => false)
+        }
+    })
+
+    if (!isLogin) {
+        return (
+            <Stack.Navigator>
+                <Stack.Screen name="SignIn" component={SignInScreen} options={{ headerShown: false }} />
+                <Stack.Screen name="SignUp" component={SignUpScreen} options={{ headerShown: false }} />
+            </Stack.Navigator>
+        );
+    } else {
+        return(
+            // TODO モーダルの挙動を整える（現状勝手に消えてくれない）
+            <Stack.Navigator>
+                <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
+                <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
+                <Stack.Screen name="EditScreen" component={EditScreen} />
+                <Stack.Group screenOptions={{ presentation: 'modal' }}>
+                    <Stack.Screen name="Profile" component={ProfileScreen} options={{ headerShown: false }} />
+                </Stack.Group>
+            </Stack.Navigator>
+        );
+    }
 }
 
 /**
@@ -63,6 +90,14 @@ function BottomTabNavigator() {
             initialRouteName="TabOne"
             screenOptions={{
                 tabBarActiveTintColor: Colors[colorScheme].tint,
+                headerStyle: {
+                    height: 120,
+                    },
+                headerTitleStyle: {
+                    fontSize: 40,
+                    fontFamily: 'Avenir',
+                    fontWeight: '900',
+                },
             }}>
             <BottomTab.Screen
                 name="TabOne"
@@ -70,6 +105,7 @@ function BottomTabNavigator() {
                 options={({ navigation }: RootTabScreenProps<'TabOne'>) => ({
                     title: 'Home',
                     tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
+                    //モーダルへのリンクボタンの設定
                     headerRight: () => (
                         <Pressable
                             onPress={() => navigation.navigate('Profile')}

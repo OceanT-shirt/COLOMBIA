@@ -1,7 +1,9 @@
 import React, { useCallback, useState, useEffect, useLayoutEffect } from 'react'
 import {GiftedChat, QuickReplies, User} from 'react-native-gifted-chat'
-import {db} from "../firebase";
-import {addDoc, collection, doc, onSnapshot, orderBy, query, getFirestore} from 'firebase/firestore';
+import {auth, db} from "../firebase";
+import {addDoc, collection, onSnapshot, orderBy, query} from 'firebase/firestore';
+import {Bubble} from "react-native-gifted-chat";
+import {GroupTalkDetails} from "../components/chat/ChatRoomList";
 
 // declare the type of each message
 interface IMessage {
@@ -19,26 +21,12 @@ interface IMessage {
     quickReplies?: QuickReplies
 }
 
-
-export function MessageFunc() {
+export function MessageFunc(props: GroupTalkDetails) {
     const [messages, setMessages] = useState<IMessage[]>([]);
-
-    // 入室時に送信されるメッセージを設定
-    // useEffect(() => {
-    //     setMessages([
-    //         {
-    //             _id: 1,
-    //             text: 'Welcome!',
-    //             createdAt: new Date(),
-    //             user: {
-    //                 _id: 1,
-    //                 name: 'React Native',
-    //                 avatar: 'https://placeimg.com/140/140/any',
-    //             },
-    //         },
-    //     ])
-    // }, [])
-    //useEffectの第二引数に空の配列を渡すと、初回レンダリング時のみ関数が作用する。
+    const uid = auth?.currentUser?.uid;
+    const displayName = auth?.currentUser?.displayName;
+    const photoURL = auth?.currentUser?.photoURL;
+    const roomId = props.id
 
     const onSend = useCallback((messages=[]) => {
         if (!messages.length){
@@ -55,7 +43,7 @@ export function MessageFunc() {
             user,
         } = messages[0]
 
-       addDoc(collection(db, "chats"), {
+       addDoc(collection(db, "chatRooms", roomId, "chat"), {
             id: _id,
             createdAt: createdAt,
             text: text,
@@ -67,7 +55,7 @@ export function MessageFunc() {
 
     //メッセージ更新時にドキュメントを更新
     useLayoutEffect(() => {
-        const collectionRef = collection(db, 'chats');
+        const collectionRef = collection(db, 'chatRooms', roomId, 'chat');
         const q = query(collectionRef, orderBy('createdAt', 'desc'));
         return onSnapshot(q, (snapshot) => {
                 setMessages(snapshot.docs.map((doc: any) => ({
@@ -78,17 +66,17 @@ export function MessageFunc() {
                 })))
         });
     }, []);
-    //送信時にメッセージをトークルームに追加
 
 
+    //TODO undefined時の処理
     return (
         <GiftedChat
             messages={messages}
             onSend={messages => onSend(messages)}
             user={{
-                _id: 2,
-                name: 'React Native',
-                avatar: 'https://placeimg.com/140/140/any',
+                _id: uid,
+                name: displayName,
+                avatar: photoURL,
             }}
         />
 
