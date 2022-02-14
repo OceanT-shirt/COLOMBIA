@@ -1,4 +1,4 @@
-import {StyleSheet, TouchableOpacity} from "react-native";
+import {StyleSheet, Text, TouchableOpacity} from "react-native";
 import {View} from "../Themed";
 import {Avatar, ListItem, colors, Button} from "react-native-elements";
 import React from "react";
@@ -35,13 +35,16 @@ export function GroupTalkRoom (props: GroupTalkDetails) {
                 <View style={styles.avatar}>
                     <Avatar rounded source={require("../../assets/images/matching-app-icon.png")} size={56}/>
                 </View>
-                <View style={styles.messageContent}>
+                <View style={styles.messageContent} >
                     <ListItem.Title style={styles.title}>{roomName}</ListItem.Title>
+                    <Text numberOfLines={1} ellipsizeMode="tail">
                     <ListItem.Subtitle style={styles.subtitle}>{"新規メッセージがあります"}</ListItem.Subtitle>
+                    </Text>
                 </View>
                 {/*文字数が増えてもレイアウトがずれないようにする*/}
-                <View style={styles.left}>
-                    <ListItem.Chevron />
+                <View style={styles.right}>
+                    <ListItem.Subtitle style={styles.time}>{'12:00'}</ListItem.Subtitle>
+                    <ListItem.Title style={styles.notice}>{'4'}</ListItem.Title>
                 </View>
             {/*</TouchableOpacity>*/}
         </View>
@@ -75,24 +78,36 @@ const styles = StyleSheet.create({
     },
     messageContent: {
         padding: 20,
+        paddingLeft:10,
         flex: 1,
         backgroundColor: 'transparent',
     },
     title: {
         color: '#000',
         fontFamily: 'Avenir',
-        fontWeight: '900',
+        fontWeight: 'bold',
         fontSize: 24,
         width: '70%',
         height: 40,
     },
     subtitle: {
         color: '#000',
+        fontSize:18,
     },
-    left: {
-        backgroundColor: '#00B398',
-        flexDirection: 'row',
-        borderTopEndRadius: 10,
-        borderBottomEndRadius: 10,
+    right: {
+        justifyContent: "center",
+        backgroundColor: 'transparent',
+        marginLeft: 20,
+        marginRight: 20,
+    },
+    notice: {
+        fontSize:24,
+        color:'red',
+        paddingLeft:6,
+    },
+    time: {
+        fontSize:10,
+        color:'black',
+        paddingBottom:5,
     },
 });
