@@ -30,6 +30,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         borderRadius: 10,
         paddingVertical:2,
+        borderColor:'#C4C4C4'
     },
     title:{
         fontSize:14,
