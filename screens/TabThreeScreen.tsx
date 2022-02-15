@@ -26,10 +26,9 @@ function App (props: Props) {
   };
   return(
     <View style={styles.container}>
-      <View style={{flex: 1, width: 400}}>
-        <MessageFunc roomName={"運営"} id={"chatRoom2"} />
-      </View>
-      {/*<ChatRoomList />*/}
+      {/*<View style={{flex: 1, width: 400}}>*/}
+      {/*  <MessageFunc roomName={"運営"} id={"chatRoom2"} />*/}
+      {/*</View>*/}
 
     </View>
 
