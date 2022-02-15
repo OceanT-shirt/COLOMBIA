@@ -2,31 +2,14 @@ import {collection, getDocs, onSnapshot, orderBy, query} from "firebase/firestor
 import {db} from "../../firebase";
 import {Text} from "../Themed";
 import {ScrollView, StyleSheet, View} from "react-native";
-import {messages_list} from "../messages";
 import {Avatar, Button, ListItem} from "react-native-elements";
 import React, {useEffect, useLayoutEffect, useState} from "react";
 import {GroupTalkRoom} from "./ChatButton";
+import Colors from "../../constants/Colors";
 
 export interface GroupTalkDetails {
     id: string;
     roomName: string;
-}
-
-const CreateRoomButton = () => {
-    return (
-        <View style={styles.createButton} >
-            {/*<TouchableOpacity onPress={roomLink}>*/}
-            <View style={styles.messageContent}>
-                <ListItem.Title style={styles.createButtonTitle}>新規ルームを作成</ListItem.Title>
-                {/*<ListItem.Subtitle style={styles.subtitle}>{user.message}</ListItem.Subtitle>*/}
-            </View>
-            {/*文字数が増えてもレイアウトがずれないようにする*/}
-            <View style={styles.createButtonLeft}>
-                <ListItem.Chevron />
-            </View>
-            {/*</TouchableOpacity>*/}
-        </View>
-        )
 }
 
 
@@ -44,9 +27,6 @@ const ChatRoomList = () => {
     console.log(roomNameList)
     return(
         <ScrollView style={styles.list}>
-            <ListItem containerStyle={{backgroundColor:"transparent"}} >
-                <CreateRoomButton />
-            </ListItem>
             {roomNameList.map((name)=>(
                 <ListItem containerStyle={{backgroundColor:"transparent"}}>
                     <GroupTalkRoom roomName={name} key={roomNameList.indexOf(name)} />

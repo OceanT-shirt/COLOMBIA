@@ -3,12 +3,15 @@ import {StyleSheet, Text, View} from "react-native";
 import {Avatar, Button} from "react-native-elements";
 // import {Members} from "./members";
 
+// TODO delete this file
+
 interface Members {
     id: number |　string;
     pic: HTMLImageElement;
     name: string;
     desc: string;
 }
+
 
 const ProfileCard = (props: Members) => {
     return (
@@ -79,4 +82,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default ProfileCard
+

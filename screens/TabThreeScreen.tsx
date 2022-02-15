@@ -5,7 +5,6 @@ import { RootTabScreenProps } from '../types';
 import React, {useState} from "react";
 import CounterText from "./CounterText"
 import PeopleIcon from "../components/PeopleIcon";
-import IconsFlex from "../components/IconsFlex";
 import {MessageFunc} from "./ChatScreen";
 import {ChatRoomList} from "../components/chat/ChatRoomList";
 import {Button, Input} from "react-native-elements";

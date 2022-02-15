@@ -5,9 +5,15 @@ import { RootTabScreenProps } from '../types';
 import React from "react";
 import CounterText from "./CounterText"
 import PeopleIcon from "../components/PeopleIcon";
-import IconsFlex from "../components/IconsFlex";
 import {MessageFunc} from "./ChatScreen";
 import {ChatRoomList} from "../components/chat/ChatRoomList";
+import Colors from "../constants/Colors";
+
+// sample imports
+import {CardsDisp, ProfileCardsDisp} from "../components/molecules/CardsDisp";
+import {ProfileCardProps} from "../components/molecules/CardsDisp";
+import {MemberCardsSample, ProfileCardsSample, TalkSample} from "../sample_data/SampleData";
+import {TalkListView} from "../components/molecules/ListButton";
 
 interface Props{
   color: string;
@@ -23,8 +29,9 @@ function App (props: Props) {
   };
   return(
     <View style={styles.container}>
-      {/*<IconsFlex />*/}
-      <ChatRoomList />
+      <ProfileCardsDisp memberCardList={MemberCardsSample} />
+      {/*<ChatRoomList />*/}
+      <TalkListView infoArray={TalkSample} />
     </View>
 
   );
@@ -45,7 +52,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'transparent',
+    backgroundColor: Colors.light.background,
   },
   title: {
     fontSize: 20,
