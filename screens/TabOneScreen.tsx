@@ -14,6 +14,7 @@ import {CardsDisp, ProfileCardsDisp} from "../components/molecules/CardsDisp";
 import {ProfileCardProps} from "../components/molecules/CardsDisp";
 import {MemberCardsSample, ProfileCardsSample, TalkSample} from "../sample_data/SampleData";
 import {TalkListView} from "../components/molecules/ListButton";
+import {GroupTalkRoom} from "../components/chat/ChatButton";
 
 interface Props{
   color: string;
@@ -31,7 +32,8 @@ function App (props: Props) {
     <View style={styles.container}>
       <ProfileCardsDisp memberCardList={MemberCardsSample} />
       {/*<ChatRoomList />*/}
-      <TalkListView infoArray={TalkSample} />
+      {/*<TalkListView infoArray={TalkSample} />*/}
+      <GroupTalkRoom roomName={"fafa"} key={1} />
     </View>
 
   );

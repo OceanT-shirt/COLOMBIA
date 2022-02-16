@@ -10,7 +10,7 @@ interface GroupTalkDetails {
     roomLink?: any;
 }
 
-export default function ChatButton (user: Partial<Messages>) {
+export function ChatButton (user: Partial<Messages>) {
     return (
         <View style={styles.button}>
             <View style={styles.avatar}>
