@@ -8,6 +8,8 @@ import PeopleIcon from "../components/PeopleIcon";
 import IconsFlex from "../components/IconsFlex";
 import {MessageFunc} from "./ChatScreen";
 import {ChatRoomList} from "../components/chat/ChatRoomList";
+import FilterButton from "../components/Button";
+import CreateNewRoomScreen from "./CreateNewRoomScreen";
 
 interface Props{
   color: string;
@@ -23,7 +25,6 @@ function App (props: Props) {
   };
   return(
     <View style={styles.container}>
-      {/*<IconsFlex />*/}
       <ChatRoomList />
     </View>
 
