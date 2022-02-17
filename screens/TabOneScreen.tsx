@@ -7,10 +7,6 @@ import CounterText from "./CounterText"
 import PeopleIcon from "../components/PeopleIcon";
 import {MessageFunc} from "./ChatScreen";
 import {ChatRoomList} from "../components/chat/ChatRoomList";
-<<<<<<< HEAD
-import FilterButton from "../components/Button";
-import CreateNewRoomScreen from "./CreateNewRoomScreen";
-=======
 import Colors from "../constants/Colors";
 
 // sample imports
@@ -18,7 +14,6 @@ import {CardsDisp, ProfileCardsDisp} from "../components/molecules/CardsDisp";
 import {ProfileCardProps} from "../components/molecules/CardsDisp";
 import {MemberCardsSample, ProfileCardsSample, TalkSample} from "../sample_data/SampleData";
 import {TalkListView} from "../components/molecules/ListButton";
->>>>>>> origin
 
 interface Props{
   color: string;
@@ -33,15 +28,11 @@ function App (props: Props) {
     setValue(newValue)
   };
   return(
-    <View style={styles.container}>
-<<<<<<< HEAD
-      <ChatRoomList />
-=======
-      <ProfileCardsDisp memberCardList={MemberCardsSample} />
-      {/*<ChatRoomList />*/}
-      <TalkListView infoArray={TalkSample} />
->>>>>>> origin
-    </View>
+      <View style={styles.container}>
+        <ProfileCardsDisp memberCardList={MemberCardsSample} />
+        {/*<ChatRoomList />*/}
+        <TalkListView infoArray={TalkSample} />
+      </View>
 
   );
 };
