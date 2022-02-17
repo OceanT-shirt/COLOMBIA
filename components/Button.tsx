@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
         flexDirection:'row',
     },
     icon:{
-        marginTop:6,
+        marginTop:6.5,
         marginLeft:12,
     },
     titleContent:{
