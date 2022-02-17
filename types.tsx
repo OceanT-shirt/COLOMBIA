@@ -38,4 +38,28 @@ export type RootTabScreenProps<Screen extends keyof RootTabParamList> = Composit
   NativeStackScreenProps<RootStackParamList>
 >;
 
+// interfaces of cards
+export interface ProfileCardProps {
+  name: string;
+  profile: string;
+  photoUrl: string;
+  score?: number;
+}
 
+export interface MemberCardProps {
+  groupName: string;
+  seasonName: string;
+  score: number;
+  id?: number;
+  name?: string;
+}
+
+
+export interface ProfileCardsArrayProps {
+  profileList: Array<ProfileCardProps>
+}
+
+
+export interface MemberCardsArrayProps {
+  memberCardList: Array<MemberCardProps>
+}

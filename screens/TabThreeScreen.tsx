@@ -5,12 +5,12 @@ import { RootTabScreenProps } from '../types';
 import React, {useState} from "react";
 import CounterText from "./CounterText"
 import PeopleIcon from "../components/PeopleIcon";
-import IconsFlex from "../components/IconsFlex";
 import {MessageFunc} from "./ChatScreen";
 import {ChatRoomList} from "../components/chat/ChatRoomList";
 import {Button, Input} from "react-native-elements";
 import {addDoc, collection} from "firebase/firestore";
 import {db} from "../firebase";
+import FilterButton from "../components/Button";
 
 
 interface Props{
@@ -27,10 +27,11 @@ function App (props: Props) {
   };
   return(
     <View style={styles.container}>
-      <View style={{flex: 1, width: 400}}>
-        <MessageFunc roomName={"運営"} id={"chatRoom2"} />
-      </View>
+      {/*<View style={{flex: 1, width: 400}}>*/}
+      {/*  <MessageFunc roomName={"運営"} id={"chatRoom2"} />*/}
+      {/*</View>*/}
       {/*<ChatRoomList />*/}
+      <FilterButton title={"Filter"} fontAwesomeTitle={"filter"} />
 
     </View>
 

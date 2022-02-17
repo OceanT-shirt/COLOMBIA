@@ -6,7 +6,7 @@ import ProfileCard from "./ProfileCard";
 import {collection, onSnapshot, query} from "firebase/firestore";
 import {db} from "../firebase";
 
-
+// TODO このファイルの移行が完了したら、ProfileCard.tsxと合わせて削除する
 export default function HomeScreen () {
     const [profileList, setProfileList] = useState([])
     useLayoutEffect(() => {
