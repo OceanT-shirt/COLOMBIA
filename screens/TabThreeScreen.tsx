@@ -30,7 +30,7 @@ function App (props: Props) {
 
 
       {/*以下のコードに追記すればボタンを正常に表示できる。*/}
-      <CommonButton />
+      <CommonButton title="hogehoge"  />
     {/*  sample--- <CommonButton title="ほげほげボタン" />  */}
 
     </View>
@@ -54,6 +54,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#444',
+
   },
   title: {
     fontSize: 20,

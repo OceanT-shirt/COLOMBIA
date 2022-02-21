@@ -2,19 +2,23 @@ import {StyleSheet, Text, View} from "react-native";
 import Colors from "../../constants/Colors";
 
 interface ButtonProps {
-//    ここに追記
+    title : string;
 }
 
 const styles = StyleSheet.create({
     buttonContainer: {
-    //    ここに追記
+        height : 52 ,
+        width : 268 ,
+        backgroundColor : Colors.dark.colorEmphasis,
     },
     buttonTitle: {
-    //    ここに追記
+        width : 224,
+        height : 26,
+        color : "white",
+        fontSize : 20 ,
     },
 })
 // ボタンの背景色には、Colors.dark.colorEmphasisを用いる。
-
 
 
 export const CommonButton = (props: ButtonProps) => {
@@ -22,6 +26,7 @@ export const CommonButton = (props: ButtonProps) => {
         <View style={styles.buttonContainer}>
             <Text style={styles.buttonTitle}>
             {/*    ここに追記*/}
+                { props.title }
             </Text>
         </View>
     )
