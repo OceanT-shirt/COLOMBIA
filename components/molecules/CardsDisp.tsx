@@ -6,16 +6,19 @@ import Colors from "../../constants/Colors";
 import Swiper from "react-native-swiper";
 import {MemberCardProps, MemberCardsArrayProps, ProfileCardProps, ProfileCardsArrayProps} from "../../types";
 import {TitleStyles} from "../atoms/title";
+import {BlurView} from "expo-blur";
 
 
 const styles = StyleSheet.create({
     card: {
         height: 300,
         width: 200,
-        borderRadius: 15,
+        // borderRadius: 15,
         justifyContent: 'space-between',
         alignItems: 'center',
-        backgroundColor: '#fff',
+        // backgroundColor: '#fff',
+        borderColor: 'white',
+        borderWidth: .5,
     },
     compactCard: {
         height: 150,
@@ -87,7 +90,7 @@ const styles = StyleSheet.create({
 const ProfileCard = (props: ProfileCardProps) => {
 
     return(
-        <View style={styles.card}>
+        <BlurView intensity={70} tint="light" style={styles.card}>
             <Text style={styles.score}>
                 {props.score}
             </Text>
@@ -101,7 +104,7 @@ const ProfileCard = (props: ProfileCardProps) => {
                 {props.profile}
             </Text>
             <Button title="友達追加" buttonStyle={styles.button} containerStyle={styles.buttonContainer} titleStyle={styles.buttonTitle} />
-        </View>
+        </BlurView>
     )
 }
 
@@ -130,7 +133,7 @@ const CardsDisp = ({profileList}: ProfileCardsArrayProps) => {
         <Swiper style={styles.wrapper} showsButtons bounces >
             {
                 profileList.map((info) => {
-                    return (<ProfileCard key={profileList.indexOf(info)} photoUrl={info.photoUrl} name={info.name} profile={info.profile} score={info.score} />)})
+                    return (<ProfileCard key={profileList.indexOf(info)} {...info} />)})
             }
         </Swiper>
     )
