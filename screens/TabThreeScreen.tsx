@@ -10,7 +10,11 @@ import {ChatRoomList} from "../components/chat/ChatRoomList";
 import {Button, Input} from "react-native-elements";
 import {addDoc, collection} from "firebase/firestore";
 import {db} from "../firebase";
+
 import {CommonButton} from "../components/atoms/button";
+
+import FilterButton from "../components/Button";
+
 
 
 interface Props{
@@ -28,10 +32,8 @@ function App (props: Props) {
   return(
     <View style={styles.container}>
 
+      <FilterButton title={"Filter"} fontAwesomeTitle={"filter"} />
 
-      {/*以下のコードに追記すればボタンを正常に表示できる。*/}
-      <CommonButton title="hogehoge"  />
-    {/*  sample--- <CommonButton title="ほげほげボタン" />  */}
 
     </View>
 
