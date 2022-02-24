@@ -5,7 +5,7 @@ import {styles} from "./SignInScreen";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import {RootStackScreenProps} from "../types";
 import {db,auth} from "../firebase";
-import { addDoc, collection, onSnapshot, orderBy, query} from "firebase/firestore";
+import { setDoc, doc, onSnapshot, orderBy, query} from "firebase/firestore";
 
 
 const SignUpScreen = ({ navigation }: RootStackScreenProps<'SignUp'>) => {
@@ -35,9 +35,9 @@ const SignUpScreen = ({ navigation }: RootStackScreenProps<'SignUp'>) => {
                 });
                 const uid = auth?.currentUser?.uid;
                 const imageURL= auth?.currentUser?.imageURL;
-                addDoc(
-                  collection(
-                    db,"profile","users","usersInfo"),
+                setDoc(
+                  doc(
+                    db,"profile","users","usersInfo",uid),
                 {
                     uid: uid,
                     info:{
