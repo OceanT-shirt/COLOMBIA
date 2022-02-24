@@ -17,4 +17,3 @@ export default {
     tabIconSelected: tintColorDark,
   },
 };
-git
