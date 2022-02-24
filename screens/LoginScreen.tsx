@@ -57,7 +57,7 @@ const LoginScreen = ({navigation}) => {
 
 export default LoginScreen
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
   button: {
       width: 200,
       marginTop: 10

@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {View} from "react-native";
 import {Button, Input} from "react-native-elements";
-import {styles} from "./SignInScreen";
+import {styles} from "./LoginScreen";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import {RootStackScreenProps} from "../types";
 import {db,auth} from "../firebase";
