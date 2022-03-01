@@ -11,6 +11,7 @@ import {Button, Input} from "react-native-elements";
 import {addDoc, collection} from "firebase/firestore";
 import {db} from "../firebase";
 import FilterButton from "../components/Button";
+import CreateNewEvent from "../components/CreateNewEvent";
 
 
 interface Props{
@@ -27,11 +28,7 @@ function App (props: Props) {
   };
   return(
     <View style={styles.container}>
-      {/*<View style={{flex: 1, width: 400}}>*/}
-      {/*  <MessageFunc roomName={"運営"} id={"chatRoom2"} />*/}
-      {/*</View>*/}
-      {/*<ChatRoomList />*/}
-      <FilterButton title={"Filter"} fontAwesomeTitle={"filter"} />
+      <CreateNewEvent />
 
     </View>
 
