@@ -10,6 +10,9 @@ import {ChatRoomList} from "../components/chat/ChatRoomList";
 import {Button, Input} from "react-native-elements";
 import {addDoc, collection} from "firebase/firestore";
 import {db} from "../firebase";
+import {MemberCardsDisp} from "../components/molecules/CardsDisp";
+import {ProfileCardsSample} from "../sample_data/SampleData";
+import {MemberCards} from "../components/functions/GetMemberCards";
 
 import {CommonButton} from "../components/atoms/button";
 
@@ -32,8 +35,8 @@ function App (props: Props) {
   };
   return(
     <View style={styles.container}>
-      <CreateNewEvent />
-
+      {/*<SearchBarComponent atoms="gaga"/>*/}
+      <MemberCards />
 
     </View>
 
@@ -54,8 +57,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#444',
 
   },
   title: {

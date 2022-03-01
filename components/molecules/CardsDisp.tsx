@@ -6,19 +6,22 @@ import Colors from "../../constants/Colors";
 import Swiper from "react-native-swiper";
 import {MemberCardProps, MemberCardsArrayProps, ProfileCardProps, ProfileCardsArrayProps} from "../../types";
 import {TitleStyles} from "../atoms/title";
+import {BlurView} from "expo-blur";
 
 
 const styles = StyleSheet.create({
     card: {
         height: 300,
         width: 200,
-        borderRadius: 15,
+        // borderRadius: 15,
         justifyContent: 'space-between',
         alignItems: 'center',
-        backgroundColor: '#fff',
+        // backgroundColor: '#fff',
+        borderColor: 'white',
+        borderWidth: .5,
     },
     compactCard: {
-        height: 150,
+        height: 80,
         width: 200,
         borderRadius: 15,
         justifyContent: 'space-between',
@@ -72,7 +75,7 @@ const styles = StyleSheet.create({
         fontSize: 35,
     },
     container: {
-        flex: 1,
+        height: 360,
         backgroundColor: 'transparent',
         justifyContent: 'center',
         alignItems: 'center',
@@ -87,21 +90,21 @@ const styles = StyleSheet.create({
 const ProfileCard = (props: ProfileCardProps) => {
 
     return(
-        <View style={styles.card}>
+        <BlurView intensity={70} tint="light" style={styles.card}>
             <Text style={styles.score}>
                 {props.score}
             </Text>
             <View style={styles.avatar}>
-                <Avatar rounded size={100} source={{uri: props.photoUrl}} />
+                <Avatar rounded size={100} source={{uri: props.photoURL}} />
             </View>
             <Text style={styles.name}>
-                {props.name}
+                {props.displayName}
             </Text>
             <Text style={styles.desc}>
                 {props.profile}
             </Text>
             <Button title="友達追加" buttonStyle={styles.button} containerStyle={styles.buttonContainer} titleStyle={styles.buttonTitle} />
-        </View>
+        </BlurView>
     )
 }
 
@@ -127,10 +130,12 @@ export const MemberCard = "This component shows a member card"
 // TODO 複数枚同時に表示できるように変更
 const CardsDisp = ({profileList}: ProfileCardsArrayProps) => {
     return (
-        <Swiper style={styles.wrapper} showsButtons loop={true} bounces={true}>
+
+        <Swiper style={styles.wrapper} showsButtons bounces >
+
             {
                 profileList.map((info) => {
-                    return (<ProfileCard key={profileList.indexOf(info)} photoUrl={info.photoUrl} name={info.name} profile={info.profile} score={info.score} />)})
+                    return (<ProfileCard key={profileList.indexOf(info)} {...info} />)})
             }
         </Swiper>
     )
@@ -153,7 +158,7 @@ export const ProfileCardsDisp = ({memberCardList}: MemberCardsArrayProps) => {
             <Text style={TitleStyles.titleCenter}>
                 MY MEMBERS CARDS
             </Text>
-            <Swiper style={styles.wrapper} showsButtons loop={true}>
+            <Swiper style={styles.wrapper} showsButtons loop bounces>
                 {
                     memberCardList.map((info) => {
                         return (<MemberCardCompact key={memberCardList.indexOf(info)} groupName={info.groupName} seasonName={info.seasonName} score={info.score} />)})

@@ -3,18 +3,18 @@ import {EventInfo, TalkInfo} from "../components/molecules/ListButton";
 
 
 export const ProfileCardsSample: Array<ProfileCardProps> = [{
-    "name": "Haru",
-        "photoUrl": "https://placeimg.com/120/120/any",
+    "displayName": "Haru",
+        "photoURL": "https://placeimg.com/120/120/any",
         "profile": "こんにちは",
         "score": 10,
 }, {
-    "name": "Hao",
-        "photoUrl": "https://placeimg.com/120/120/people/grayscale",
+    "displayName": "Hao",
+        "photoURL": "https://placeimg.com/120/120/people/grayscale",
         "profile": "Hello",
         "score": 1,
 }, {
-    "name": "gsaga",
-        "photoUrl": "https://pbs.twimg.com/media/Dr40WvuU0AAaiPn.jpg",
+    "displayName": "gsaga",
+        "photoURL": "https://pbs.twimg.com/media/Dr40WvuU0AAaiPn.jpg",
         "profile": "こんにちは",
         "score": 0,
 },]

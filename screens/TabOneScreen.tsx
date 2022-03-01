@@ -14,6 +14,7 @@ import {CardsDisp, ProfileCardsDisp} from "../components/molecules/CardsDisp";
 import {ProfileCardProps} from "../components/molecules/CardsDisp";
 import {MemberCardsSample, ProfileCardsSample, TalkSample} from "../sample_data/SampleData";
 import {TalkListView} from "../components/molecules/ListButton";
+import {GroupTalkRoom} from "../components/chat/ChatButton";
 
 interface Props{
   color: string;
@@ -28,11 +29,17 @@ function App (props: Props) {
     setValue(newValue)
   };
   return(
-      <View style={styles.container}>
+
+    <View style={styles.container}>
+      <View style={styles.cardsContainer}>
         <ProfileCardsDisp memberCardList={MemberCardsSample} />
+      </View>
+      <View style={styles.chatsContainer}>
         {/*<ChatRoomList />*/}
         <TalkListView infoArray={TalkSample} />
       </View>
+    </View>
+
 
   );
 };
@@ -50,22 +57,16 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
+    alignItems: 'stretch',
     justifyContent: 'center',
     backgroundColor: Colors.light.background,
+
   },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
+  cardsContainer: {
+    height: 140,
   },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
-  },
-  input: {
-    borderWidth: 1,
-    width: 256,
-    padding: 4,
+  chatsContainer: {
+    flex: 1,
+    alignItems: "stretch",
   },
 });

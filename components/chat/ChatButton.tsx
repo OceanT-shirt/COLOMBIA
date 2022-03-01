@@ -4,13 +4,15 @@ import {Avatar, ListItem, colors, Button} from "react-native-elements";
 import React from "react";
 import {Messages} from "../messages";
 
+// TODO このファイルをListButtonに移行し、削除する
+
 interface GroupTalkDetails {
     roomName: string;
     key: number;
     roomLink?: any;
 }
 
-export default function ChatButton (user: Partial<Messages>) {
+export function ChatButton (user: Partial<Messages>) {
     return (
         <View style={styles.button}>
             <View style={styles.avatar}>

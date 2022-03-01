@@ -26,6 +26,9 @@ import {useState} from "react";
 import SignInScreen from "../screens/SignInScreen";
 import SignUpScreen from "../screens/SignUpScreen";
 import EditScreen from "../screens/EditScreen";
+import {BlurView} from "expo-blur";
+import { BottomTabBarHeightContext } from '@react-navigation/bottom-tabs';
+
 
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
@@ -92,13 +95,26 @@ function BottomTabNavigator() {
                 tabBarActiveTintColor: Colors[colorScheme].tint,
                 headerStyle: {
                     height: 120,
+                    backgroundColor: Colors.dark.background,
                     },
                 headerTitleStyle: {
                     fontSize: 40,
                     fontFamily: 'Avenir',
                     fontWeight: '900',
+                    color: 'white',
                 },
+                tabBarShowLabel: false,
+                tabBarStyle: {
+                    backgroundColor: Colors.dark.tabBar,
+                    borderTopColor: '#8D20E0',
+                    borderTopWidth: 2,
+                    position: "absolute",
+                },
+                tabBarBackground: () => (
+                    <BlurView tint="light" intensity={80} />
+                ),
             }}>
+
             <BottomTab.Screen
                 name="TabOne"
                 component={TabOneScreen}
@@ -115,27 +131,28 @@ function BottomTabNavigator() {
                             <FontAwesome
                                 name="user"
                                 size={25}
-                                color={Colors[colorScheme].text}
+                                color='white'
                                 style={{ marginRight: 15 }}
                             />
                         </Pressable>
                     ),
+
                 })}
             />
             <BottomTab.Screen
                 name="TabTwo"
                 component={TabTwoScreen}
                 options={{
-                    title: 'Shuffle',
-                    tabBarIcon: ({ color }) => <TabBarIcon name="refresh" color={color} />,
+                    title: 'Discover',
+                    tabBarIcon: ({ color }) => <TabBarIcon name="plus" color={color} />,
                 }}
             />
             <BottomTab.Screen
                 name="TabThree"
                 component={TabThreeScreen}
                 options={{
-                    title: 'Trending',
-                    tabBarIcon: ({ color }) => <TabBarIcon name="fire" color={color} />,
+                    title: 'Members',
+                    tabBarIcon: ({ color }) => <TabBarIcon name="users" color={color} />,
                 }}
             />
         </BottomTab.Navigator>
