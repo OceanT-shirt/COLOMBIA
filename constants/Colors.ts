@@ -16,5 +16,6 @@ export default {
     tabIconDefault: '#6964FA',
     tabIconSelected: tintColorDark,
     colorEmphasis: '#F54C21',
+    colorNormal: '#8D20E0',
   },
 };

@@ -10,8 +10,12 @@ import {ChatRoomList} from "../components/chat/ChatRoomList";
 import {Button, Input} from "react-native-elements";
 import {addDoc, collection} from "firebase/firestore";
 import {db} from "../firebase";
+
+import {CommonButton} from "../components/atoms/button";
+
 import FilterButton from "../components/Button";
 import CreateNewEvent from "../components/CreateNewEvent";
+
 
 
 interface Props{
@@ -29,6 +33,7 @@ function App (props: Props) {
   return(
     <View style={styles.container}>
       <CreateNewEvent />
+
 
     </View>
 
@@ -51,6 +56,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#444',
+
   },
   title: {
     fontSize: 20,
