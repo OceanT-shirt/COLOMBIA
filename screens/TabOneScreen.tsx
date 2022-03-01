@@ -29,6 +29,7 @@ function App (props: Props) {
     setValue(newValue)
   };
   return(
+
     <View style={styles.container}>
       <View style={styles.cardsContainer}>
         <ProfileCardsDisp memberCardList={MemberCardsSample} />
@@ -38,6 +39,7 @@ function App (props: Props) {
         <TalkListView infoArray={TalkSample} />
       </View>
     </View>
+
 
   );
 };

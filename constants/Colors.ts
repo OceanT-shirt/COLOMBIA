@@ -19,5 +19,6 @@ export default {
     tabIconSelected: tintColorDark,
     colorEmphasis: '#F54C21',
     tabBar: 'rgba(0, 0, 33, .85)',
+
   },
 };

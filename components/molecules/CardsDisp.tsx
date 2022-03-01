@@ -130,7 +130,9 @@ export const MemberCard = "This component shows a member card"
 // TODO 複数枚同時に表示できるように変更
 const CardsDisp = ({profileList}: ProfileCardsArrayProps) => {
     return (
+
         <Swiper style={styles.wrapper} showsButtons bounces >
+
             {
                 profileList.map((info) => {
                     return (<ProfileCard key={profileList.indexOf(info)} {...info} />)})

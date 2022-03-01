@@ -14,6 +14,12 @@ import {MemberCardsDisp} from "../components/molecules/CardsDisp";
 import {ProfileCardsSample} from "../sample_data/SampleData";
 import {MemberCards} from "../components/functions/GetMemberCards";
 
+import {CommonButton} from "../components/atoms/button";
+
+import FilterButton from "../components/Button";
+import CreateNewEvent from "../components/CreateNewEvent";
+
+
 
 interface Props{
   color: string;
@@ -31,6 +37,7 @@ function App (props: Props) {
     <View style={styles.container}>
       {/*<SearchBarComponent atoms="gaga"/>*/}
       <MemberCards />
+
     </View>
 
   );
@@ -50,6 +57,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
+
   },
   title: {
     fontSize: 20,
