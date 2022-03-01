@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
         borderWidth: .5,
     },
     compactCard: {
-        height: 150,
+        height: 80,
         width: 200,
         borderRadius: 15,
         justifyContent: 'space-between',
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
         fontSize: 35,
     },
     container: {
-        flex: 1,
+        height: 360,
         backgroundColor: 'transparent',
         justifyContent: 'center',
         alignItems: 'center',
@@ -95,10 +95,10 @@ const ProfileCard = (props: ProfileCardProps) => {
                 {props.score}
             </Text>
             <View style={styles.avatar}>
-                <Avatar rounded size={100} source={{uri: props.photoUrl}} />
+                <Avatar rounded size={100} source={{uri: props.photoURL}} />
             </View>
             <Text style={styles.name}>
-                {props.name}
+                {props.displayName}
             </Text>
             <Text style={styles.desc}>
                 {props.profile}

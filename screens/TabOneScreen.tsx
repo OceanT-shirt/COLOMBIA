@@ -30,10 +30,13 @@ function App (props: Props) {
   };
   return(
     <View style={styles.container}>
-      <ProfileCardsDisp memberCardList={MemberCardsSample} />
-      {/*<ChatRoomList />*/}
-      {/*<TalkListView infoArray={TalkSample} />*/}
-      <GroupTalkRoom roomName={"fafa"} key={1} />
+      <View style={styles.cardsContainer}>
+        <ProfileCardsDisp memberCardList={MemberCardsSample} />
+      </View>
+      <View style={styles.chatsContainer}>
+        {/*<ChatRoomList />*/}
+        <TalkListView infoArray={TalkSample} />
+      </View>
     </View>
 
   );
@@ -52,22 +55,16 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
+    alignItems: 'stretch',
     justifyContent: 'center',
     backgroundColor: Colors.light.background,
+
   },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
+  cardsContainer: {
+    height: 140,
   },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
-  },
-  input: {
-    borderWidth: 1,
-    width: 256,
-    padding: 4,
+  chatsContainer: {
+    flex: 1,
+    alignItems: "stretch",
   },
 });

@@ -1,8 +1,20 @@
-import {StyleSheet} from "react-native";
+import {StyleSheet, Text, View} from "react-native";
 import Colors from "../../constants/Colors";
 
 // タイトルのスタイルをまとめるコンポーネント
+interface TitleProps {
+    title: string;
+}
 
+export const TitleCenter = (props: TitleProps) => {
+    return(
+        <View style={TitleStyles.centerContainer}>
+            <Text style={TitleStyles.titleCenter}>
+                {props.title}
+            </Text>
+        </View>
+    )
+}
 
 export const TitleStyles = StyleSheet.create({
     titleCenter: {
@@ -10,17 +22,9 @@ export const TitleStyles = StyleSheet.create({
         fontFamily: 'Avenir',
         fontWeight: '900',
         fontSize: 24,
-        width: '70%',
         height: 40,
     },
-    // TODO 下のやつミスってる
-    titleLeft: {
-        alignItems: "flex-start",
-        color: '#000',
-        fontFamily: 'Avenir',
-        fontWeight: '900',
-        fontSize: 24,
-        backgroundColor: 'red',
-        flex: 1,
+    centerContainer: {
+        alignItems: 'center',
     },
 })

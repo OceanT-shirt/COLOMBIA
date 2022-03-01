@@ -131,7 +131,7 @@ function BottomTabNavigator() {
                             <FontAwesome
                                 name="user"
                                 size={25}
-                                color={Colors[colorScheme].text}
+                                color='white'
                                 style={{ marginRight: 15 }}
                             />
                         </Pressable>

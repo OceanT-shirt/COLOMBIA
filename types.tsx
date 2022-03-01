@@ -40,9 +40,9 @@ export type RootTabScreenProps<Screen extends keyof RootTabParamList> = Composit
 
 // interfaces of cards
 export interface ProfileCardProps {
-  name: string;
+  displayName: string;
   profile: string;
-  photoUrl: string;
+  photoURL: string;
   score?: number;
 }
 

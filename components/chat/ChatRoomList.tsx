@@ -23,8 +23,7 @@ const ChatRoomList = () => {
             console.log("通信処理を行いました");
         });
     }, []);
-    console.log("roomNameListの中身")
-    console.log(roomNameList)
+
     return(
         <ScrollView style={styles.list}>
             {roomNameList.map((name)=>(

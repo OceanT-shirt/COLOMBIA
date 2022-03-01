@@ -4,6 +4,8 @@ import {Avatar, ListItem, colors, Button} from "react-native-elements";
 import React from "react";
 import {Messages} from "../messages";
 
+// TODO このファイルをListButtonに移行し、削除する
+
 interface GroupTalkDetails {
     roomName: string;
     key: number;
