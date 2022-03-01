@@ -14,6 +14,7 @@ import {db} from "../firebase";
 import {CommonButton} from "../components/atoms/button";
 
 import FilterButton from "../components/Button";
+import CreateNewEvent from "../components/CreateNewEvent";
 
 
 
@@ -31,8 +32,7 @@ function App (props: Props) {
   };
   return(
     <View style={styles.container}>
-
-      <FilterButton title={"Filter"} fontAwesomeTitle={"filter"} />
+      <CreateNewEvent />
 
 
     </View>

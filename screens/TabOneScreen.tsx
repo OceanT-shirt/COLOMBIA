@@ -28,11 +28,11 @@ function App (props: Props) {
     setValue(newValue)
   };
   return(
-    <View style={styles.container}>
-      <ProfileCardsDisp memberCardList={MemberCardsSample} />
-      {/*<ChatRoomList />*/}
-      <TalkListView infoArray={TalkSample} />
-    </View>
+      <View style={styles.container}>
+        <ProfileCardsDisp memberCardList={MemberCardsSample} />
+        {/*<ChatRoomList />*/}
+        <TalkListView infoArray={TalkSample} />
+      </View>
 
   );
 };
