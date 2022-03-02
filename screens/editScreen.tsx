@@ -5,7 +5,7 @@ import { db,auth } from "../firebase"
 import {updateProfile} from "firebase/auth";
 import firestore,{updateDoc, collection, doc,onSnapshot, orderBy, query,where} from 'firebase/firestore';
 import {RootTabScreenProps} from "../types";
-import {styles} from "./SignInScreen";
+import {styles} from "./LoginScreen";
 
 const EditScreen = ({navigation}: RootTabScreenProps<'EditScreen'>) => {
     const [profileList, setProfileList] = useState([])
