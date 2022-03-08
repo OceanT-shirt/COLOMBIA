@@ -4,7 +4,8 @@ import {Button, Input} from "react-native-elements";
 import {styles} from "./SignInScreen";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import {RootStackScreenProps} from "../types";
-import {auth} from "../firebase";
+import {db,auth} from "../firebase";
+import { setDoc, doc, onSnapshot, orderBy, query} from "firebase/firestore";
 
 
 const SignUpScreen = ({ navigation }: RootStackScreenProps<'SignUp'>) => {
@@ -13,7 +14,11 @@ const SignUpScreen = ({ navigation }: RootStackScreenProps<'SignUp'>) => {
     const [password, setPassword] = useState("");
     const [imageURL, setImageURL] = useState("");
     const [profile, setProfile] = useState("こんにちは");
+
+
     const register = () => {
+
+
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential)=> {
                 let user = userCredential.user;
@@ -28,6 +33,24 @@ const SignUpScreen = ({ navigation }: RootStackScreenProps<'SignUp'>) => {
                     const errorMessage = error.message;
                     alert(errorMessage)
                 });
+                const uid = auth?.currentUser?.uid;
+                const imageURL= auth?.currentUser?.imageURL;
+                setDoc(
+                  doc(
+                    db,"profile","users","usersInfo",uid),
+                {
+                    uid: uid,
+                    info:{
+                              // createdAt: db.timestamp.fromDate(new Date()),
+                              displayName : name,
+                              photoURL: imageURL? imageURL:"https://pbs.twimg.com/media/Dr40WvuU0AAaiPn.jpg",
+                              profile: profile,
+                              score: 0}
+
+                  });
+
+
+
                 }
             )
     }
@@ -64,6 +87,13 @@ const SignUpScreen = ({ navigation }: RootStackScreenProps<'SignUp'>) => {
                     leftIcon={{ type: 'material', name: 'face' }}
                     value={imageURL}
                     onChangeText={text => setImageURL(text)}
+                />
+                <Input
+                    placeholder='Enter your Profile Messages'
+                    label='Profile messages'
+                    leftIcon={{ type: 'material', name: 'face' }}
+                    value={profile}
+                    onChangeText={text => setProfile(text)}
                 />
             </View>
             <Button title="Register >" onPress= {register} buttonStyle={styles.registerButton} containerStyle={styles.buttonContainer} titleStyle={styles.buttonTitle} />
