@@ -1,8 +1,8 @@
 import {Text, View} from "react-native";
-import {Avatar, Button} from "react-native-elements";
+import {Avatar, Button, Divider} from "react-native-elements";
 import React from "react";
 import {StyleSheet} from "react-native";
-import Colors from "../../constants/Colors";
+import Colors, {colors_new} from "../../constants/Colors";
 import Swiper from "react-native-swiper";
 import {MemberCardProps, MemberCardsArrayProps, ProfileCardProps, ProfileCardsArrayProps} from "../../types";
 import {TitleStyles} from "../atoms/title";
@@ -23,10 +23,11 @@ const styles = StyleSheet.create({
     compactCard: {
         height: 80,
         width: 200,
-        borderRadius: 15,
+        borderRadius: 10,
         justifyContent: 'space-between',
         alignItems: 'center',
         backgroundColor: '#fff',
+        flexDirection: "row",
     },
     score: {
         fontSize: 36,
@@ -84,6 +85,9 @@ const styles = StyleSheet.create({
         // justifyContent: 'center',
         // alignItems: 'center',
     },
+    cardName:{
+
+    },
 })
 
 // TODO ボタンリンク先の設定
@@ -111,14 +115,16 @@ const ProfileCard = (props: ProfileCardProps) => {
 const MemberCardCompact = (props: MemberCardProps) => {
     return(
         <View style={styles.compactCard}>
+            <View style={styles.cardName}>
+                <Text style={styles.name}>
+                    {props.groupName}
+                </Text>
+                <Text style={styles.desc}>
+                    {props.seasonName}
+                </Text>
+            </View>
             <Text style={styles.score}>
                 {props.score}
-            </Text>
-            <Text style={styles.name}>
-                {props.groupName}
-            </Text>
-            <Text style={styles.desc}>
-                {props.seasonName}
             </Text>
         </View>
     )
@@ -164,6 +170,8 @@ export const ProfileCardsDisp = ({memberCardList}: MemberCardsArrayProps) => {
                         return (<MemberCardCompact key={memberCardList.indexOf(info)} groupName={info.groupName} seasonName={info.seasonName} score={info.score} />)})
                 }
             </Swiper>
+            {/*<Divider color={colors_new.light.title} width={5} />*/}
         </View>
     )
 }
+// TODO Divider表示されない問題

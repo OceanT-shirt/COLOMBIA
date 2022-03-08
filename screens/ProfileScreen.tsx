@@ -4,6 +4,7 @@ import {Button} from "react-native-elements";
 import {Text, View} from "../components/Themed";
 import {auth} from "../firebase";
 import {RootTabScreenProps} from "../types";
+import {colors_new} from "../constants/Colors";
 
 
 export default function ProfileScreen({navigation}: RootTabScreenProps<'Profile'>) {
@@ -48,6 +49,7 @@ const styles = StyleSheet.create ({
         fontSize: 36,
         fontFamily: 'Avenir',
         fontWeight: '900',
+        color: colors_new.light.title,
     },
     separator: {
         marginVertical: 30,

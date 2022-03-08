@@ -2,6 +2,17 @@ const tintColorLight = '#fff';
 // const tintColorLight = '#6964FA';
 const tintColorDark = '#fff';
 
+export const colors_new = {
+  light: {
+    title: "#fff",
+    subtitle: "#fff",
+    text: "#fff",
+    miniText: "#fff",
+    notice: "#f54c21",
+    background: "#000033",
+  },
+}
+
 
 export default {
   light: {
