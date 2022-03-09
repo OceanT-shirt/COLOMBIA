@@ -37,7 +37,7 @@ interface TalkRoomsProps {
 // }
 
 export const TalkRoomList = () => {
-    const [roomInfoArray, setRoomInfoArray] = useState<string[]>()
+    const [roomInfoArray, setRoomInfoArray] = useState<string[]>([])
 
     useLayoutEffect(() => {
         const uid = auth?.currentUser?.uid;
@@ -55,13 +55,15 @@ export const TalkRoomList = () => {
 
 
         return onSnapshot(q, (collectionSnap) => {
-            console.log(collectionSnap.docs.map(doc => doc.data()))
+            console.log(collectionSnap.docs.map(doc => DocToInfo(doc)))
             setRoomInfoArray(collectionSnap.docs.map(doc => DocToInfo(doc)))
             console.log("TALK ROOM CONNECTED");
-            // console.log(roomInfoArray)
+            console.log(roomInfoArray)
         });
     }, []);
 
+    console.log("infoArray")
+    console.log(roomInfoArray)
     return (
         <TalkListViewSimple infoArray={roomInfoArray} />
     )

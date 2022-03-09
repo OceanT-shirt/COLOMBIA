@@ -28,6 +28,7 @@ import SignUpScreen from "../screens/SignUpScreen";
 import EditScreen from "../screens/EditScreen";
 import {BlurView} from "expo-blur";
 import { BottomTabBarHeightContext } from '@react-navigation/bottom-tabs';
+import TalkScreen from "../screens/TalkScreen";
 
 
 
@@ -69,6 +70,7 @@ function RootNavigator() {
             // TODO モーダルの挙動を整える（現状勝手に消えてくれない）
             <Stack.Navigator>
                 <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
+                <Stack.Screen name="Talk" component={TalkScreen} />
                 <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
                 <Stack.Screen name="EditScreen" component={EditScreen} />
                 <Stack.Group screenOptions={{ presentation: 'modal' }}>

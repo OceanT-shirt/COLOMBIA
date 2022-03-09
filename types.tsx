@@ -18,6 +18,11 @@ export type RootStackParamList = {
   NotFound: undefined;
   SignIn: undefined;
   SignUp: undefined;
+  Profile: undefined;
+  Talk: {
+    roomId: string;
+  };
+  EditScreen: undefined;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<
@@ -26,8 +31,6 @@ export type RootStackScreenProps<Screen extends keyof RootStackParamList> = Nati
 >;
 
 export type RootTabParamList = {
-  EditProfile: undefined;
-  Profile: undefined;
   TabOne: undefined;
   TabTwo: undefined;
   TabThree: undefined;
@@ -62,4 +65,8 @@ export interface ProfileCardsArrayProps {
 
 export interface MemberCardsArrayProps {
   memberCardList: Array<MemberCardProps>
+}
+
+export interface RoomInfo {
+  roomId: string;
 }

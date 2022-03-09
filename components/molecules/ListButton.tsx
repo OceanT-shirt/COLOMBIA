@@ -5,6 +5,7 @@ import {Avatar, ListItem} from "react-native-elements";
 import React from "react";
 import {TitleCenter, TitleStyles} from "../atoms/title";
 import {colors_new} from "../../constants/Colors";
+import {useNavigation} from "@react-navigation/native";
 
 export interface TalkInfo {
     "title": string;
@@ -108,7 +109,7 @@ const styles = StyleSheet.create({
 const TalkListButton = (props: TalkInfo) => {
     return(
         // <View style={styles.talkButtonContainer}>
-            <TouchableOpacity style={styles.talkButtonContainer} onPress={}>
+            <TouchableOpacity style={styles.talkButtonContainer}>
                 <View style={styles.avatar}>
                     <Avatar rounded source={require("../../assets/images/matching-app-icon.png")} size={56}/>
                 </View>
@@ -129,8 +130,12 @@ const TalkListButton = (props: TalkInfo) => {
 }
 
 const TalkListButtonSimple = (props: TalkInfoSimple) => {
+
+    const navigation = useNavigation();
+
     return(
-        <TouchableOpacity style={styles.talkButtonContainer}>
+        // <TouchableOpacity style={styles.talkButtonContainer} onPress={() => console.log(props.roomId)}>
+        <TouchableOpacity style={styles.talkButtonContainer} onPress={() => navigation.navigate('Talk', {roomId: props.roomId})}>
             <View style={styles.avatar}>
                 <Avatar rounded source={{uri: props.roomImageUrl}} size={56}/>
             </View>
