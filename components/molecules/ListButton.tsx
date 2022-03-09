@@ -17,6 +17,18 @@ interface TalkInfoArray {
     "infoArray": Array<TalkInfo>
 }
 
+// v2用のシンプルなインターフェース
+export interface TalkInfoSimple {
+    "roomName": string;
+    "roomImageUrl": string;
+    "roomId": string;
+}
+
+interface TalkInfoSimpleArray {
+    "infoArray": Array<TalkInfoSimple>
+}
+
+
 export interface EventInfo {
     "regulation": string;
     "eventName": string;
@@ -96,7 +108,7 @@ const styles = StyleSheet.create({
 const TalkListButton = (props: TalkInfo) => {
     return(
         // <View style={styles.talkButtonContainer}>
-            <TouchableOpacity style={styles.talkButtonContainer}>
+            <TouchableOpacity style={styles.talkButtonContainer} onPress={}>
                 <View style={styles.avatar}>
                     <Avatar rounded source={require("../../assets/images/matching-app-icon.png")} size={56}/>
                 </View>
@@ -116,6 +128,20 @@ const TalkListButton = (props: TalkInfo) => {
     )
 }
 
+const TalkListButtonSimple = (props: TalkInfoSimple) => {
+    return(
+        <TouchableOpacity style={styles.talkButtonContainer}>
+            <View style={styles.avatar}>
+                <Avatar rounded source={{uri: props.roomImageUrl}} size={56}/>
+            </View>
+            <View style={styles.messageContent} >
+                <Text style={styles.title}>{props.roomName}</Text>
+            </View>
+        </TouchableOpacity>
+    )
+}
+
+
 // ここでTalkListButtonをループしてスクロール出来るようになっている。
 export const TalkListView = ({infoArray}: TalkInfoArray) => {
     return(
@@ -128,6 +154,20 @@ export const TalkListView = ({infoArray}: TalkInfoArray) => {
         </ScrollView>
     )
 }
+
+// v2用のシンプルなトークボタン
+export const TalkListViewSimple = ({infoArray}: TalkInfoSimpleArray) => {
+    return(
+        <ScrollView style={styles.talkListContainer}>
+            {infoArray.map((info)=>(
+                <ListItem containerStyle={{padding: 0}}>
+                    <TalkListButtonSimple key={infoArray.indexOf(info)} {...info} />
+                </ListItem>
+            ))}
+        </ScrollView>
+    )
+}
+
 
 const EventListButton = (props: EventInfo) => {
     return(

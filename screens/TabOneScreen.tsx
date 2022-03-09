@@ -12,9 +12,8 @@ import Colors from "../constants/Colors";
 // sample imports
 import {CardsDisp, ProfileCardsDisp} from "../components/molecules/CardsDisp";
 import {ProfileCardProps} from "../components/molecules/CardsDisp";
-import {MemberCardsSample, ProfileCardsSample, TalkSample} from "../sample_data/SampleData";
-import {TalkListView} from "../components/molecules/ListButton";
-import {GroupTalkRoom} from "../components/chat/ChatButton";
+import {MemberCardsSample, ProfileCardsSample, TalkSample, TalkSimpleSample} from "../sample_data/SampleData";
+import {TalkListView, TalkListViewSimple} from "../components/molecules/ListButton";
 import {GetTalkInfo, TalkRoomList} from "../components/functions/GetTalkRooms";
 
 interface Props{
@@ -36,9 +35,9 @@ function App (props: Props) {
         <ProfileCardsDisp memberCardList={MemberCardsSample} />
       </View>
       <View style={styles.chatsContainer}>
-        {/*<ChatRoomList />*/}
         {/*<TalkListView infoArray={TalkSample} />*/}
         <TalkRoomList />
+        {/*<TalkListViewSimple infoArray={TalkSimpleSample} />*/}
       </View>
     </View>
 

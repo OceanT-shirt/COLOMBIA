@@ -1,7 +1,7 @@
 import {collection, doc, getDoc, getDocs, onSnapshot, query, where} from "firebase/firestore";
 import {auth, db} from "../../firebase";
 import {useLayoutEffect, useState} from "react";
-import {TalkListView} from "../molecules/ListButton";
+import {TalkListView, TalkListViewSimple} from "../molecules/ListButton";
 import {MemberCardsDisp} from "../molecules/CardsDisp";
 import {Text} from "react-native";
 
@@ -44,18 +44,26 @@ export const TalkRoomList = () => {
         const collectionRef = collection(db, "chatRooms");
         const q = query(collectionRef, where("members", "array-contains", uid));
 
+        // TODO 型を与える
+        const DocToInfo = (doc) => {
+            let dict = {};
+            dict.roomName = doc.data().roomName;
+            dict.roomImageUrl = doc.data().roomImageUrl;
+            dict.roomId = doc.data().roomId;
+            return (dict)
+        }
+
 
         return onSnapshot(q, (collectionSnap) => {
-            console.log(collectionSnap.docs.map(doc => doc.data().roomName))
-            // setRoomInfoArray(collectionSnap.docs.map(doc => doc.data()))
+            console.log(collectionSnap.docs.map(doc => doc.data()))
+            setRoomInfoArray(collectionSnap.docs.map(doc => DocToInfo(doc)))
             console.log("TALK ROOM CONNECTED");
             // console.log(roomInfoArray)
         });
     }, []);
 
     return (
-        // <TalkListView infoArray={roomInfoArray} />
-        <Text>Hey</Text>
+        <TalkListViewSimple infoArray={roomInfoArray} />
     )
 }
 
