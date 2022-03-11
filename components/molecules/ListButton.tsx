@@ -50,32 +50,75 @@ const styles = StyleSheet.create({
         backgroundColor: colors_new.light.background,
 
     },
-    buttonTitle: {
 
-    },
     eventButtonContainer: {
-
+        height: 74,
+        backgroundColor: 'transparent',
+        flex: 1,
+        flexDirection:'row',
     },
     talkListContainer: {
         flex: 1,
 
     },
     eventListContainer: {
-        backgroundColor: 'blue',
+        backgroundColor: 'transparent',
     },
     eventFuncContainer: {
         alignItems: "stretch",
 
     },
+
+    buttonTitle: {
+        marginTop:3,
+        fontSize: 18,
+        color: 'white',  
+    },
+
     avatar: {
         justifyContent: "center",
         backgroundColor: 'transparent',
         marginLeft: 20,
         marginRight: 20,
     },
-    messageContent: {
+
+    regulation: {
+        marginTop:0,
+        fontSize: 15,
+        color:"white",
+    },
+    eventTexts:{
+        padding:0,
+        fontFamily: 'Avenir',
+    },
+    messageContent: {  
+        padding: 20,
+        paddingLeft:10, 
         flex: 1,
         marginVertical: 10,
+    },
+    
+    attendee: {
+        fontSize:15,
+        color:'white',
+    },
+    bonus: {
+        paddingTop:"auto",
+        paddingBottom:"auto",
+        fontSize:50,
+        color:'#F54C21',
+        paddingRight:0,
+        position: 'absolute',
+        right:0,
+        bottom:0,
+    },
+    eventRight:{
+        paddingTop:"auto",
+        paddingBottom:"auto",
+        justifyContent:"center",
+        position: 'absolute',
+        right:0,
+        bottom:0,
     },
     right: {
         justifyContent: "center",
@@ -177,11 +220,25 @@ export const TalkListViewSimple = ({infoArray}: TalkInfoSimpleArray) => {
 const EventListButton = (props: EventInfo) => {
     return(
         // TODO ここのレイアウトを整える。EventInfoのPropsを適切に配置せよ
-        <View style={styles.eventButtonContainer}>
-            <Text style={styles.buttonTitle}>{props.eventName}</Text>
+        <View style={styles.eventButtonContainer}> 
+            <View style={styles.avatar}>
+                <Avatar rounded source={require("../../assets/images/matching-app-icon.png")} size={56}/>
+            </View>
+            <View style={ styles.eventTexts }>
+                <Text style={styles.regulation} numberOfLines={1} ellipsizeMode="tail">{props.regulation}</Text>
+                <ListItem.Title numberOfLines={1} ellipsizeMode="tail" style={styles.buttonTitle}>{props.eventName}</ListItem.Title>
+                <Text numberOfLines={1} ellipsizeMode="tail">
+                    {/*attendeeを表示するところが未完成*/}
+                    <ListItem.Subtitle style={styles.attendee}>{props.attendee[0].displayName}</ListItem.Subtitle>
+                </Text>
+            </View>
+            <View style={ styles.eventRight }>
+                <Text style={styles.bonus} >+{ props.bonus}</Text>
+            </View>
         </View>
 
-    )
+    ) 
+
 }
 
 
