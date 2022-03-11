@@ -1,9 +1,10 @@
 import React, { useCallback, useState, useEffect, useLayoutEffect } from 'react'
 import {GiftedChat, QuickReplies, User} from 'react-native-gifted-chat'
-import {auth, db} from "../firebase";
+import {auth, db} from "../../firebase";
 import {addDoc, collection, onSnapshot, orderBy, query} from 'firebase/firestore';
 import {Bubble} from "react-native-gifted-chat";
-import {GroupTalkDetails} from "../components/chat/ChatRoomList";
+import {RoomInfo} from "../../types";
+
 
 // declare the type of each message
 interface IMessage {
@@ -21,13 +22,14 @@ interface IMessage {
     quickReplies?: QuickReplies
 }
 
-export function MessageFunc(props: GroupTalkDetails) {
+export function MessageFunc(props: RoomInfo) {
     const [messages, setMessages] = useState<IMessage[]>([]);
     const uid = auth?.currentUser?.uid;
     const displayName = auth?.currentUser?.displayName;
     const photoURL = auth?.currentUser?.photoURL;
-    const roomId = props.id
+    const roomId = props.roomId
 
+    // メッセージ送信時の処理
     const onSend = useCallback((messages=[]) => {
         if (!messages.length){
             setMessages(messages);

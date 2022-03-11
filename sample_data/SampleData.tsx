@@ -1,5 +1,5 @@
 import {MemberCardProps, ProfileCardProps, ProfileCardsArrayProps} from "../types";
-import {EventInfo, TalkInfo} from "../components/molecules/ListButton";
+import {EventInfo, TalkInfo, TalkInfoSimple} from "../components/molecules/ListButton";
 
 
 export const ProfileCardsSample: Array<ProfileCardProps> = [{
@@ -40,6 +40,16 @@ export const TalkSample: Array<TalkInfo> = [{
         "upDate": "2:54",
         "notificationCount": 1,
     },]
+
+export const TalkSimpleSample: Array<TalkInfoSimple> = [{
+    "roomId": "gaga",
+    "roomName": "2/15 キムチコイン開発",
+    "roomImageUrl": "https://placeimg.com/640/640/any",
+}, {
+    "roomId": "gaga",
+    "roomName": "Haru",
+    "roomImageUrl": "https://placeimg.com/640/640/any",
+},]
 
 export const EventsSample: Array<EventInfo> = [{
     "regulation": "10以上限定",

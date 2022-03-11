@@ -1,9 +1,11 @@
-import {ScrollView, Text, View} from "react-native";
+import {ScrollView, Text, TouchableOpacity, View} from "react-native";
 import {ProfileCardProps} from "../../types";
 import {StyleSheet} from "react-native";
 import {Avatar, ListItem} from "react-native-elements";
 import React from "react";
 import {TitleCenter, TitleStyles} from "../atoms/title";
+import {colors_new} from "../../constants/Colors";
+import {useNavigation} from "@react-navigation/native";
 
 export interface TalkInfo {
     "title": string;
@@ -15,6 +17,18 @@ export interface TalkInfo {
 interface TalkInfoArray {
     "infoArray": Array<TalkInfo>
 }
+
+// v2用のシンプルなインターフェース
+export interface TalkInfoSimple {
+    "roomName": string;
+    "roomImageUrl": string;
+    "roomId": string;
+}
+
+interface TalkInfoSimpleArray {
+    "infoArray": Array<TalkInfoSimple>
+}
+
 
 export interface EventInfo {
     "regulation": string;
@@ -30,11 +44,13 @@ interface EventInfoArray {
 
 const styles = StyleSheet.create({
     talkButtonContainer: {
-        height: 60,
-        backgroundColor: 'purple',
+        height: 80,
         flex: 1,
+        flexDirection: "row",
+        backgroundColor: colors_new.light.background,
 
     },
+
     eventButtonContainer: {
         height: 74,
         backgroundColor: 'transparent',
@@ -42,6 +58,7 @@ const styles = StyleSheet.create({
         flexDirection:'row',
     },
     talkListContainer: {
+        flex: 1,
 
     },
     eventListContainer: {
@@ -51,17 +68,20 @@ const styles = StyleSheet.create({
         alignItems: "stretch",
 
     },
+
     buttonTitle: {
         marginTop:3,
         fontSize: 18,
         color: 'white',  
     },
+
     avatar: {
         justifyContent: "center",
         backgroundColor: 'transparent',
         marginLeft: 20,
         marginRight: 20,
     },
+
     regulation: {
         marginTop:0,
         fontSize: 15,
@@ -75,7 +95,7 @@ const styles = StyleSheet.create({
         padding: 20,
         paddingLeft:10, 
         flex: 1,
-        backgroundColor: 'transparent',
+        marginVertical: 10,
     },
     
     attendee: {
@@ -108,63 +128,94 @@ const styles = StyleSheet.create({
     },
     notice: {
         fontSize:24,
-        color:'red',
+        color:colors_new.light.notice,
         paddingLeft:6,
     },
     time: {
         fontSize:10,
-        color:'black',
+        color:colors_new.light.miniText,
         paddingBottom:5,
     },
     title: {
-        color: '#000',
+        color: colors_new.light.title,
         fontFamily: 'Avenir',
         fontWeight: 'bold',
-        fontSize: 24,
-        width: '70%',
+        fontSize: 20,
         height: 40,
     },
     subtitle: {
-        color: '#000',
-        fontSize:18,
+        color: colors_new.light.subtitle,
+        fontSize:15,
     },
 })
 
 const TalkListButton = (props: TalkInfo) => {
     return(
-        <View style={styles.talkButtonContainer}>
-            {/*<TouchableOpacity onPress={roomLink}>*/}
-            <View style={styles.avatar}>
-                <Avatar rounded source={require("../../assets/images/matching-app-icon.png")} size={56}/>
-            </View>
-            <View style={styles.messageContent} >
-                <ListItem.Title style={styles.title}>{props.title}</ListItem.Title>
-                <Text numberOfLines={1} ellipsizeMode="tail">
-                    <ListItem.Subtitle style={styles.subtitle}>{"新規メッセージがあります"}</ListItem.Subtitle>
-                </Text>
-            </View>
-            {/*文字数が増えてもレイアウトがずれないようにする*/}
-            <View style={styles.right}>
-                <ListItem.Subtitle style={styles.time}>{'12:00'}</ListItem.Subtitle>
-                <ListItem.Title style={styles.notice}>{'4'}</ListItem.Title>
-            </View>
-            {/*</TouchableOpacity>*/}
-        </View>
+        // <View style={styles.talkButtonContainer}>
+            <TouchableOpacity style={styles.talkButtonContainer}>
+                <View style={styles.avatar}>
+                    <Avatar rounded source={require("../../assets/images/matching-app-icon.png")} size={56}/>
+                </View>
+                <View style={styles.messageContent} >
+                    <Text style={styles.title}>{props.title}</Text>
+                    <Text numberOfLines={1} ellipsizeMode="tail">
+                        <Text style={styles.subtitle}>{"新規メッセージがあります"}</Text>
+                    </Text>
+                </View>
+                {/*文字数が増えてもレイアウトがずれないようにする*/}
+                <View style={styles.right}>
+                    <Text style={styles.time}>{'12:00'}</Text>
+                    <Text style={styles.notice}>{'4'}</Text>
+                </View>
+            </TouchableOpacity>
+        // </View>
     )
 }
+
+const TalkListButtonSimple = (props: TalkInfoSimple) => {
+
+    const navigation = useNavigation();
+
+    return(
+        // <TouchableOpacity style={styles.talkButtonContainer} onPress={() => console.log(props.roomId)}>
+        <TouchableOpacity style={styles.talkButtonContainer} onPress={() => navigation.navigate('Talk', {roomId: props.roomId})}>
+            <View style={styles.avatar}>
+                <Avatar rounded source={{uri: props.roomImageUrl}} size={56}/>
+            </View>
+            <View style={styles.messageContent} >
+                <Text style={styles.title}>{props.roomName}</Text>
+            </View>
+        </TouchableOpacity>
+    )
+}
+
 
 // ここでTalkListButtonをループしてスクロール出来るようになっている。
 export const TalkListView = ({infoArray}: TalkInfoArray) => {
     return(
         <ScrollView style={styles.talkListContainer}>
             {infoArray.map((info)=>(
-                <ListItem containerStyle={{backgroundColor: "transparent"}}>
+                <ListItem containerStyle={{padding: 0}}>
                     <TalkListButton key={infoArray.indexOf(info)} title={info.title} message={info.message} upDate={info.upDate} notificationCount={info.notificationCount} />
                 </ListItem>
             ))}
         </ScrollView>
     )
 }
+
+// v2用のシンプルなトークボタン
+export const TalkListViewSimple = ({infoArray}: TalkInfoSimpleArray) => {
+    return(
+        <ScrollView style={styles.talkListContainer}>
+            {infoArray.map((info)=>(
+                <ListItem containerStyle={{padding: 0}}>
+                    <TalkListButtonSimple key={infoArray.indexOf(info)} {...info} />
+                </ListItem>
+            ))}
+        </ScrollView>
+    )
+}
+
 
 const EventListButton = (props: EventInfo) => {
     return(
@@ -185,7 +236,9 @@ const EventListButton = (props: EventInfo) => {
                 <Text style={styles.bonus} >+{ props.bonus}</Text>
             </View>
         </View>
+
     ) 
+
 }
 
 

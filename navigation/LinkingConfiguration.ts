@@ -9,6 +9,8 @@ import * as Linking from 'expo-linking';
 
 import { RootStackParamList } from '../types';
 
+
+// 外部からアプリ内ページへリンクする際に使用する
 const linking: LinkingOptions<RootStackParamList> = {
   prefixes: [Linking.makeUrl('/')],
   config: {
@@ -37,6 +39,7 @@ const linking: LinkingOptions<RootStackParamList> = {
       NotFound: '*',
       SignIn: 'signin',
       SignUp: 'signup',
+      Talk: 'talk',
     },
   },
 };

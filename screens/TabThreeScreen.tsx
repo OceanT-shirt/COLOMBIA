@@ -5,7 +5,7 @@ import { RootTabScreenProps } from '../types';
 import React, {useState} from "react";
 import CounterText from "./CounterText"
 import PeopleIcon from "../components/PeopleIcon";
-import {MessageFunc} from "./ChatScreen";
+import {MessageFunc} from "../components/functions/TalkFunction";
 import {ChatRoomList} from "../components/chat/ChatRoomList";
 import {Button, Input} from "react-native-elements";
 import {addDoc, collection} from "firebase/firestore";
